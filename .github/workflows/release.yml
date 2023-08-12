@@ -16,6 +16,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Get latest tag
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const response = await github.repos.listTags({
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+            const latestTag = response.data[0].name;
+            console.log(`Latest tag: ${latestTag}`);
+
       - name: Copy files and increment version
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
