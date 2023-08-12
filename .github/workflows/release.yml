@@ -17,6 +17,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Copy files and increment version
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
         run: |
           # 创建目标目录
           mkdir sd-webui-go
