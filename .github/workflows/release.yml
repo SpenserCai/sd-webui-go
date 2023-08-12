@@ -18,14 +18,16 @@ jobs:
 
       - name: Copy files and increment version
         run: |
-          # 输出ls命令结果
-          echo "$(ls -l)"
           # 创建目标目录
           mkdir sd-webui-go
           # 复制文件到目标目录
+          echo "$(ls -l)"
           cp -r intersvc sd-webui-go/
+          echo "$(ls sd-webui-go/)"
           cp -r stablediffusion sd-webui-go/
+          echo "$(ls sd-webui-go/)"
           cp go.mod go.sum README.md webui.go sd-webui-go/
+          echo "$(ls sd-webui-go/)"
 
           # 获取当前版本号
           current_version=$(git describe --tags --abbrev=0)
