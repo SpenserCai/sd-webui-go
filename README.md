@@ -3,7 +3,7 @@
  * @Date: 2023-08-12 01:27:12
  * @version: 
  * @LastEditors: SpenserCai
- * @LastEditTime: 2023-08-12 20:01:49
+ * @LastEditTime: 2023-08-12 20:34:42
  * @Description: file content
 -->
 # SD-WEBUI-GO
@@ -41,7 +41,7 @@ func main() {
 	// Set Request
 	deoldify_inter := &intersvc.DeoldifyImage{
 		RequestItem: &intersvc.DeoldifyImageRequest{
-			InputImage:   "https://media.discordapp.net/attachments/       1138408545277190237/1138508881635577947/i7krs1njekla1.       jpg",
+			InputImage:   "https://media.discordapp.net/attachments/1138408545277190237/1138508881635577947i7krs1njekla1.jpg",
 			RenderFactor: &f_factor,
 			Artistic:     &artistic,
 		},
