@@ -18,6 +18,7 @@ jobs:
 
       - name: Get latest tag
         uses: actions/github-script@v4
+        id: get-latest-tag
         with:
           script: |
             const response = await github.repos.listTags({
@@ -25,7 +26,7 @@ jobs:
               repo: context.repo.repo
             });
             const latestTag = response.data[0].name;
-            console.log(`Latest tag: ${latestTag}`);
+            core.setOutput('latest-tag', latestTag)
 
       - name: Copy files and increment version
         env:
@@ -39,11 +40,10 @@ jobs:
           cp -r intersvc sd-webui-go/
           cp -r stablediffusion sd-webui-go/
           cp go.mod go.sum README.md webui.go sd-webui-go/
-          git tag
-          current_version=$(git describe --tags `git rev-list --tags --max-count=1`)
+          current_version=${{ steps.get-latest-tag.outputs.latest-tag }}
           echo "Current version: $current_version"
 
-          version=${current_version:1}
+          version=$(echo $current_version | cut -c 2-)
           IFS='.' read -ra version_parts <<< "$version"
           major=${version_parts[0]}
           minor=${version_parts[1]}
