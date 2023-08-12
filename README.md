@@ -3,7 +3,7 @@
  * @Date: 2023-08-12 01:27:12
  * @version: 
  * @LastEditors: SpenserCai
- * @LastEditTime: 2023-08-12 19:13:58
+ * @LastEditTime: 2023-08-12 20:01:49
  * @Description: file content
 -->
 # SD-WEBUI-GO
@@ -27,13 +27,13 @@ In fact, most of the interfaces can be used with 'intersvc', but it requires def
 
 ```go
 import (
-    SdClient "github.com/SpenserCai/sd-webui-go"
+	SdClient "github.com/SpenserCai/sd-webui-go"
 	"github.com/SpenserCai/sd-webui-go/intersvc"
 )
 
 func main() {
-    // Create a client
-    sdClient := SdClient.NewStableDiffInterface("127.0.0.1:7860")
+	// Create a client
+	sdClient := SdClient.NewStableDiffInterface("127.0.0.1:7860")
 
 	var f_factor int64 = 20
 	var artistic bool = false
@@ -65,7 +65,7 @@ Full example code: [intersvc_example](./examples/intersvc_demo/main.go)
 import (
 	"encoding/base64"
 	"os"
-
+	
 	SdClient "github.com/SpenserCai/sd-webui-go"
 	intersvc "github.com/SpenserCai/sd-webui-go/intersvc"
 	SdApiOperation "github.com/SpenserCai/sd-webui-go/stablediffusion/client/operations"
