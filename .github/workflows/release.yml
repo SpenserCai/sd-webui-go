@@ -74,7 +74,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NEW_VERSION : ${{ steps.copy-files.outputs.NEW_VERSION }}
         with:
-          tag_name: ${{ NEW_VERSION }}
-          release_name: ${{ NEW_VERSION }}
+          tag_name: ${{ env.NEW_VERSION }}
+          release_name: ${{ env.NEW_VERSION }}
           draft: false
           prerelease: false
