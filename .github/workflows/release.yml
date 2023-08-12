@@ -66,14 +66,15 @@ jobs:
           echo "New version: $new_version"
 
           # 创建release
-          core.setOutput('NEW_VERSION', $new_version)
+          echo "NEW_VERSION=$new_version" >> $GITHUB_OUTPUT
 
       - name: Create Release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NEW_VERSION : ${{ steps.copy-files.outputs.NEW_VERSION }}
         with:
-          tag_name: ${{ steps.copy-files.outputs.NEW_VERSION }}
-          release_name: ${{ steps.copy-files.outputs.NEW_VERSION }}
+          tag_name: ${{ NEW_VERSION }}
+          release_name: ${{ NEW_VERSION }}
           draft: false
           prerelease: false
