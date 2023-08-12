@@ -1,11 +1,3 @@
-/*
- * @Author: SpenserCai
- * @Date: 2023-08-12 00:43:12
- * @version:
- * @LastEditors: SpenserCai
- * @LastEditTime: 2023-08-12 15:23:00
- * @Description: file content
- */
 package intersvc
 
 import (
