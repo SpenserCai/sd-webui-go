@@ -3,11 +3,13 @@
  * @Date: 2023-08-12 01:27:12
  * @version: 
  * @LastEditors: SpenserCai
- * @LastEditTime: 2023-08-12 15:20:53
+ * @LastEditTime: 2023-08-12 19:13:58
  * @Description: file content
 -->
 # SD-WEBUI-GO
 This is a Go language version of the SDK based on [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui). In your code, you can directly use the API interfaces of [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) through object-oriented operations, instead of dealing with cumbersome JSON.
+
+Support extensions API !
 
 ## Usage
 There are two methods to use the SDK. 
@@ -111,4 +113,30 @@ func main() {
 
 Full example code: [go-swagger_example](./examples/stable_demo/main.go)
 
-## 
+## Participating
+
+Most of the code for intersvc has been generated using a code generator. However, due to the lack of response information in the API documentation for sd-webui, it needs to be manually written.
+
+### How to submit a PR
+
+You need to fork the code of the dev branch, make the necessary code updates, create a branch named dev-[model filename] in your own repository, and then submit a pull request to the dev branch of this repository.
+
+### How to define the Response Model
+
+In `sd-webui-go/intersvc`,you can see some file like `***_model.go`. These files define the Response Model. You can refer to the following example to define the Response Model.
+
+From
+
+```go
+type DeoldifyImageResponse struct {
+	
+}
+```
+
+To
+
+```go
+type DeoldifyImageResponse struct {
+	Image string `json:"image"`
+}
+```
