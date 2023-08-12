@@ -62,11 +62,10 @@ jobs:
 
           new_version="$major.$minor.$patch"
           new_version="v$new_version"
-          echo "New version: v$new_version"
+          echo "New version: $new_version"
 
           # 创建release
           echo "::set-env name=NEW_VERSION::$new_version"
-          # echo "::set-output name=new_version::$new_version"
 
       - name: Create Release
         uses: actions/create-release@v1
