@@ -1,0 +1,50 @@
+name: Release Action
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Action to execute'
+        required: true
+        default: 'release'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Copy files and increment version
+        run: |
+          # 复制文件到目标目录
+          cp -r intersvc sd-webui-go/
+          cp -r stablediffusion sd-webui-go/
+          cp go.mod go.sum README.md webui.go sd-webui-go/
+
+          # 获取当前版本号
+          current_version=$(git describe --tags --abbrev=0)
+          echo "Current version: $current_version"
+
+          # 递增版本号
+          IFS='.' read -r -a version_parts <<< "$current_version"
+          major=${version_parts[0]}
+          minor=${version_parts[1]}
+          patch=${version_parts[2]}
+          new_version="$major.$minor.$((patch + 1))"
+          echo "New version: $new_version"
+
+          # 创建release
+          echo "::set-env name=NEW_VERSION::$new_version"
+          echo "::set-output name=new_version::$new_version"
+
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.NEW_VERSION }}
+          release_name: Release ${{ env.NEW_VERSION }}
+          draft: false
+          prerelease: false
