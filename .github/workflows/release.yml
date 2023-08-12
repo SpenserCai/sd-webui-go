@@ -27,22 +27,22 @@ jobs:
           cp -r stablediffusion sd-webui-go/
           cp go.mod go.sum README.md webui.go sd-webui-go/
 
-          # 获取当前版本号如果没有默认为0.0.0
-          current_version=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
+          # 获取当前版本号如果没有默认为v0.0.0
+          current_version=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
           echo "Current version: $current_version"
 
-          # 递增版本号前面加v，如v0.0.1
-          IFS='.' read -r -a version_parts <<< "$current_version"
+          version=${current_version:1}
+          IFS='.' read -ra version_parts <<< "$version"
           major=${version_parts[0]}
           minor=${version_parts[1]}
           patch=${version_parts[2]}
           new_version="$major.$minor.$((patch + 1))"
           new_version="v$new_version"
-          echo "New version: $new_version"
+          echo "New version: v$new_version"
 
           # 创建release
           echo "::set-env name=NEW_VERSION::$new_version"
-          echo "::set-output name=new_version::$new_version"
+          # echo "::set-output name=new_version::$new_version"
 
       - name: Create Release
         uses: actions/create-release@v1
