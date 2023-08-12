@@ -30,9 +30,6 @@ jobs:
 
       - name: Copy files and increment version
         id: copy-files
-        env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-          # 获取tag
         run: |
           git pull
           # 创建目标目录
