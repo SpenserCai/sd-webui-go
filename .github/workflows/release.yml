@@ -36,7 +36,19 @@ jobs:
           major=${version_parts[0]}
           minor=${version_parts[1]}
           patch=${version_parts[2]}
-          new_version="$major.$minor.$((patch + 1))"
+          # 版本递增，patch+1超过5，minor+1,minor超过10,major+1
+          if [ "$patch" -lt 5 ]; then
+            patch=$((patch + 1))
+          elif [ "$minor" -lt 10 ]; then
+            minor=$((minor + 1))
+            patch=0
+          else
+            major=$((major + 1))
+            minor=0
+            patch=0
+          fi
+          
+          new_version="$major.$minor.$patch"
           new_version="v$new_version"
           echo "New version: v$new_version"
 
