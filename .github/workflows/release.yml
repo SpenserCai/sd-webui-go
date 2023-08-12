@@ -29,6 +29,7 @@ jobs:
             core.setOutput('latest-tag', latestTag)
 
       - name: Copy files and increment version
+        id: copy-files
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
           # 获取tag
@@ -65,14 +66,14 @@ jobs:
           echo "New version: $new_version"
 
           # 创建release
-          echo "::set-env name=NEW_VERSION::$new_version"
+          core.setOutput('NEW_VERSION', $new_version)
 
       - name: Create Release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.NEW_VERSION }}
-          release_name: ${{ env.NEW_VERSION }}
+          tag_name: ${{ steps.copy-files.outputs.NEW_VERSION }}
+          release_name: ${{ steps.copy-files.outputs.NEW_VERSION }}
           draft: false
           prerelease: false
