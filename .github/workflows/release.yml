@@ -28,8 +28,7 @@ jobs:
           cp -r stablediffusion sd-webui-go/
           cp go.mod go.sum README.md webui.go sd-webui-go/
 
-          # 获取当前版本号如果没有默认为v0.0.0
-          current_version=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          current_version=$(git describe --tags `git rev-list --tags --max-count=1`)
           echo "Current version: $current_version"
 
           version=${current_version:1}
