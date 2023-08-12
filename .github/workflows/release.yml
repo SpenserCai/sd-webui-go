@@ -20,6 +20,7 @@ jobs:
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
         run: |
+          git pull
           # 创建目标目录
           mkdir sd-webui-go
           # 复制文件到目标目录
@@ -47,7 +48,7 @@ jobs:
             minor=0
             patch=0
           fi
-          
+
           new_version="$major.$minor.$patch"
           new_version="v$new_version"
           echo "New version: v$new_version"
