@@ -41,7 +41,7 @@ jobs:
         ls
         repository_full_name=${{ github.repository }}
         repository_name=${repository_full_name##*/}
-        cd ./${{ repository_name }}.wiki
+        cd ./$repository_name.wiki
         cp -f ../list.md ./Intersvc-Support-List.md
         git commit -am "Update Support List"
         git push
