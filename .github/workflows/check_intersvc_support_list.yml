@@ -26,7 +26,7 @@ jobs:
       id: run_script
       run: |
         python3 .action_script/gen_intersvc_support_list.py >> list.md
-        echo "SP_LIST=$(cat list.md)" >> $GITHUB_OUTPUT
+        echo "SP_LIST=$(cat list.md | base64 -w 0)" >> $GITHUB_OUTPUT
 
     - name: Checkout Wiki
       uses: actions/checkout@v2
@@ -38,7 +38,7 @@ jobs:
         git config --global user.name "GitHub Actions Bot"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         # 把SP_LIST的内容写入到Intersvc-Support-List.md中
-        echo "${{ env.SP_LIST }}" >> ./Intersvc-Support-List.md
+        echo "${{ env.SP_LIST }}" | base64 -d >> ./Intersvc-Support-List.md
         git commit -am "Update Support List"
       env:
         SP_LIST: ${{ steps.run_script.outputs.SP_LIST }}
