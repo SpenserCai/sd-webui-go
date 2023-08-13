@@ -22,14 +22,28 @@ jobs:
       with:
         python-version: 3.10.12 
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install github
-
     - name: Run script
       id: run_script
       run: |
-        python .action_script/gen_intersvc_support_list.py
+        support_list=$(python .action_script/gen_intersvc_support_list.py)
+        echo "SUPPORT_LIST=$support_list" >> $GITHUB_OUTPUT
+    
+    - name: Configure Git
+      run: |
+        git config --global user.name "GitHub Actions Bot"
+        git config --global user.email "<email>"
+
+    - name: Clone Wiki repository
+      run: git clone https://${{ env.GITHUB_TOKEN }}@github.com/${{ github.repository }}.wiki.git
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Update Wiki
+      run: |
+        cd ./${{ github.repository }}.wiki
+        echo ${{ env.SUPPORT_LIST }} >> Intersvc-Support-List.md
+        git commit -am "Update Support List"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SUPPORT_LIST : ${{ steps.run_script-files.outputs.SUPPORT_LIST }}
