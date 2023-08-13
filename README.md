@@ -3,7 +3,7 @@
  * @Date: 2023-08-12 01:27:12
  * @version: 
  * @LastEditors: SpenserCai
- * @LastEditTime: 2023-08-13 15:07:15
+ * @LastEditTime: 2023-08-14 02:29:18
  * @Description: file content
 -->
 
@@ -35,6 +35,8 @@ Golang SDK for [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-
 This is a Go language version of the SDK based on [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui). In your code, you can directly use the API interfaces of [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) through object-oriented operations, instead of dealing with cumbersome JSON.
 
 Support extensions API !
+
+<b>You can check the support list for intersvc in this [wiki page](https://github.com/SpenserCai/sd-webui-go/wiki/Intersvc-Support-List).</b>
 
 ## Usage
 There are two methods to use the SDK. 

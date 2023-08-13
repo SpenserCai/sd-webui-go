@@ -1,3 +1,11 @@
+/*
+ * @Author: SpenserCai
+ * @Date: 2023-08-14 01:00:25
+ * @version:
+ * @LastEditors: SpenserCai
+ * @LastEditTime: 2023-08-14 02:35:33
+ * @Description: file content
+ */
 package intersvc
 
 import (
@@ -6,6 +14,4 @@ import (
 
 type SdapiV1PngInfoRequest = SdApiModel.PNGInfoRequest
 
-type SdapiV1PngInfoResponse struct {
-
-}
+type SdapiV1PngInfoResponse = SdApiModel.PNGInfoResponse
