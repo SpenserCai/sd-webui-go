@@ -38,6 +38,7 @@ jobs:
 
     - name: Update Wiki
       run: |
+        ls
         cd ./${{ github.repository }}.wiki
         cp -f ../list.md ./Intersvc-Support-List.md
         git commit -am "Update Support List"
