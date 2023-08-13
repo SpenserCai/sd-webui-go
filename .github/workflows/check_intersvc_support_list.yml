@@ -32,7 +32,7 @@ jobs:
     - name: Run script
       id: run_script
       run: |
-        python3 .action_script/gen_intersvc_support_list.py >> list.md
+        python3 .github/scripts/gen_intersvc_support_list.py >> list.md
         echo "SP_LIST=$(cat list.md | base64 -w 0)" >> $GITHUB_OUTPUT
 
     - name: Checkout Wiki
