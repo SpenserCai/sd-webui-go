@@ -3,7 +3,7 @@
  * @Date: 2023-08-12 01:27:12
  * @version: 
  * @LastEditors: SpenserCai
- * @LastEditTime: 2023-08-13 14:25:21
+ * @LastEditTime: 2023-08-13 15:07:15
  * @Description: file content
 -->
 
@@ -27,6 +27,9 @@ Golang SDK for [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-
   <a href="https://goreportcard.com/report/github.com/SpenserCai/sd-webui-go">
     <img src="https://goreportcard.com/badge/github.com/SpenserCai/sd-webui-go" alt="GoReportCard">
   </a>
+  <a href="https://discord.gg/nN6b7QAcVW">
+  <img src="https://discordapp.com/api/guilds/1140177489008807966/widget.png?style=shield" alt="Discord Server">
+</a>
 </p>
 
 This is a Go language version of the SDK based on [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui). In your code, you can directly use the API interfaces of [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) through object-oriented operations, instead of dealing with cumbersome JSON.
