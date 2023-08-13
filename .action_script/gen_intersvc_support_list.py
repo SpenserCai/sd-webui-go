@@ -3,7 +3,7 @@ Author: SpenserCai
 Date: 2023-08-13 20:20:50
 version: 
 LastEditors: SpenserCai
-LastEditTime: 2023-08-14 02:37:34
+LastEditTime: 2023-08-14 03:00:09
 Description: file content
 '''
 import os
@@ -47,16 +47,17 @@ def gen_intersvc_support_list():
                     intersvc['path'] = line.replace('// API Path: ', '').strip()
                     break
         with open(intersvc['model'], 'r') as f:
+            code = f.read()
             # 找到type *Response struct {\t..\t},如果里面由除了\n和\t以外的字符，说明有内容，说明支持intersvc
             pattern = r'type\s+(\w+)Response\s+struct\s*{([^}]+)}'
-            matches = re.findall(pattern, f.read(), re.DOTALL)
+            matches = re.findall(pattern, code, re.DOTALL)
             if matches:
                 struct_body = matches[0][1].strip()
                 if bool(re.sub(r'\s', '', struct_body)):
                     intersvc['supported'] = "√"
             # 如果可以匹配到type *Response = SdApiModel.* 说明支持intersvc
             pattern = r'type\s+(\w+)Response\s*=\s*SdApiModel\.(\w+)'
-            matches = re.findall(pattern, f.read(), re.DOTALL)
+            matches = re.findall(pattern, code, re.DOTALL)
             if matches:
                 intersvc['supported'] = "√"
         if "// Checked: True" in open(intersvc['model']).read():
