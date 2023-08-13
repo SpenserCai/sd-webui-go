@@ -3,13 +3,13 @@
  * @Date: 2023-08-12 01:27:12
  * @version: 
  * @LastEditors: SpenserCai
- * @LastEditTime: 2023-08-13 14:15:47
+ * @LastEditTime: 2023-08-13 14:25:21
  * @Description: file content
 -->
 
 <div align="center">
 
-<img src="./res/logo.png" width="200" height="200" alt="sd-webui-go">
+<img src="https://raw.githubusercontent.com/SpenserCai/sd-webui-go/main/res/logo.png" width="200" height="200" alt="sd-webui-go">
 
 # SD-WEBUI-GO
 Golang SDK for [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui)'s API
