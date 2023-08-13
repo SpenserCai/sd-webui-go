@@ -8,6 +8,9 @@ on:
         description: 'Action to execute'
         required: true
         default: 'Check Intersvc Support List'
+  push:
+    branches:
+      - main
 
 jobs:
   check_intersvc_support_list:
@@ -41,7 +44,8 @@ jobs:
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         # 把SP_LIST的内容写入到Intersvc-Support-List.md中
         echo "${{ env.SP_LIST }}" | base64 -d > ./Intersvc-Support-List.md
-        git commit -am "Update Support List"
+        # 如果没有变动，不需要提交
+        git diff --exit-code --quiet || git commit -am "Update Support List"
         git push
       env:
         SP_LIST: ${{ steps.run_script.outputs.SP_LIST }}
