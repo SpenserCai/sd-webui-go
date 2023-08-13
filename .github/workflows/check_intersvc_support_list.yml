@@ -30,6 +30,7 @@ jobs:
     - name: Configure Git
       run: |
         git config --global user.name "GitHub Actions Bot"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
     - name: Clone Wiki repository
       run: git clone https://${{ env.GITHUB_TOKEN }}@github.com/${{ github.repository }}.wiki.git
@@ -38,7 +39,6 @@ jobs:
 
     - name: Update Wiki
       run: |
-        ls
         repository_full_name=${{ github.repository }}
         repository_name=${repository_full_name##*/}
         cd ./$repository_name.wiki
