@@ -7,10 +7,6 @@ on:
         description: 'Action to execute'
         required: true
         default: 'release'
-  # 打tag时触发
-  push:
-    tags:
-      - 'v*.*.*'
 
 jobs:
   release:
