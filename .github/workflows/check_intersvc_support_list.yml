@@ -40,7 +40,7 @@ jobs:
         git config --global user.name "GitHub Actions Bot"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         # 把SP_LIST的内容写入到Intersvc-Support-List.md中
-        echo "${{ env.SP_LIST }}" | base64 -d >> ./Intersvc-Support-List.md
+        echo "${{ env.SP_LIST }}" | base64 -d > ./Intersvc-Support-List.md
         git commit -am "Update Support List"
         git push
       env:
