@@ -5,6 +5,7 @@ import (
 	SdApiOperation "github.com/SpenserCai/sd-webui-go/stablediffusion/client/operations"
 )
 
+// API Path: /sam/dilate-mask
 type SamDilateMask struct {
 	RequestItem  *SamDilateMaskRequest
 	ResponseItem *SamDilateMaskResponse

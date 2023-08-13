@@ -3,10 +3,32 @@
  * @Date: 2023-08-12 01:27:12
  * @version: 
  * @LastEditors: SpenserCai
- * @LastEditTime: 2023-08-12 20:34:42
+ * @LastEditTime: 2023-08-13 14:15:47
  * @Description: file content
 -->
+
+<div align="center">
+
+<img src="./res/logo.png" width="200" height="200" alt="sd-webui-go">
+
 # SD-WEBUI-GO
+Golang SDK for [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui)'s API
+
+</div>
+
+<p align="center">
+  <a href="https://raw.githubusercontent.com/SpenserCai/sd-webui-go/main/LICENSE">
+    <img src="https://img.shields.io/github/license/SpenserCai/sd-webui-go?color=blueviolet" alt="license">
+  </a>
+  <img src="https://img.shields.io/badge/Go-1.19+-blue" alt="go">
+  <a href="https://github.com/SpenserCai/sd-webui-go/releases">
+    <img src="https://img.shields.io/github/v/release/SpenserCai/sd-webui-go?color=rgb(255%2C0%2C0)&include_prereleases" alt="release">
+  </a>
+  <a href="https://goreportcard.com/report/github.com/SpenserCai/sd-webui-go">
+    <img src="https://goreportcard.com/badge/github.com/SpenserCai/sd-webui-go" alt="GoReportCard">
+  </a>
+</p>
+
 This is a Go language version of the SDK based on [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui). In your code, you can directly use the API interfaces of [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) through object-oriented operations, instead of dealing with cumbersome JSON.
 
 Support extensions API !

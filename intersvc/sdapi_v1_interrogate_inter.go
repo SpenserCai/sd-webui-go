@@ -5,6 +5,7 @@ import (
 	SdApiOperation "github.com/SpenserCai/sd-webui-go/stablediffusion/client/operations"
 )
 
+// API Path: /sdapi/v1/interrogate
 type SdapiV1Interrogate struct {
 	RequestItem  *SdapiV1InterrogateRequest
 	ResponseItem *SdapiV1InterrogateResponse

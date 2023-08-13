@@ -5,6 +5,7 @@ import (
 	SdApiOperation "github.com/SpenserCai/sd-webui-go/stablediffusion/client/operations"
 )
 
+// API Path: /controlnet/detect
 type ControlnetDetect struct {
 	RequestItem  *ControlnetDetectRequest
 	ResponseItem *ControlnetDetectResponse

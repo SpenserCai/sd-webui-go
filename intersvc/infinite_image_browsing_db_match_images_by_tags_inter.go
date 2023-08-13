@@ -5,6 +5,7 @@ import (
 	SdApiOperation "github.com/SpenserCai/sd-webui-go/stablediffusion/client/operations"
 )
 
+// API Path: /infinite_image_browsing/db/match_images_by_tags
 type InfiniteImageBrowsingDbMatchImagesByTags struct {
 	RequestItem  *InfiniteImageBrowsingDbMatchImagesByTagsRequest
 	ResponseItem *InfiniteImageBrowsingDbMatchImagesByTagsResponse

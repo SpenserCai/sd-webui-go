@@ -5,6 +5,7 @@ import (
 	SdApiOperation "github.com/SpenserCai/sd-webui-go/stablediffusion/client/operations"
 )
 
+// API Path: /sam/dino-predict
 type SamDinoPredict struct {
 	RequestItem  *SamDinoPredictRequest
 	ResponseItem *SamDinoPredictResponse

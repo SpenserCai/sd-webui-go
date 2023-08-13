@@ -5,6 +5,7 @@ import (
 	SdApiOperation "github.com/SpenserCai/sd-webui-go/stablediffusion/client/operations"
 )
 
+// API Path: /sam/sam-predict
 type SamSamPredict struct {
 	RequestItem  *SamSamPredictRequest
 	ResponseItem *SamSamPredictResponse
