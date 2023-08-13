@@ -12,6 +12,10 @@ on:
 jobs:
   check_intersvc_support_list:
     runs-on: ubuntu-latest  # 选择适合你的操作系统环境
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
 
     steps:
     - name: Checkout code
@@ -29,22 +33,15 @@ jobs:
         echo "SP_LIST=$(cat list.md | base64 -w 0)" >> $GITHUB_OUTPUT
 
     - name: Checkout Wiki
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: ${{ github.repository }}.wiki
-
-    - name: Update Wiki
-      run: |
+    - run: |
         git config --global user.name "GitHub Actions Bot"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         # 把SP_LIST的内容写入到Intersvc-Support-List.md中
         echo "${{ env.SP_LIST }}" | base64 -d >> ./Intersvc-Support-List.md
         git commit -am "Update Support List"
+        git pull
       env:
         SP_LIST: ${{ steps.run_script.outputs.SP_LIST }}
-
-    - name: Push Wiki
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        repository: ${{ github.repository }}.wiki
