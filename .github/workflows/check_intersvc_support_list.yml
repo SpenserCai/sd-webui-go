@@ -8,6 +8,9 @@ on:
         description: 'Action to execute'
         required: true
         default: 'Check Intersvc Support List'
+  push:
+    branches:
+      - main
 
 jobs:
   check_intersvc_support_list:
