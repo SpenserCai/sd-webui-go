@@ -5,6 +5,7 @@ import (
 	SdApiOperation "github.com/SpenserCai/sd-webui-go/stablediffusion/client/operations"
 )
 
+// API Path: /sam/category-mask
 type SamCategoryMask struct {
 	RequestItem  *SamCategoryMaskRequest
 	ResponseItem *SamCategoryMaskResponse

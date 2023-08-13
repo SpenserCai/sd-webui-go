@@ -5,6 +5,7 @@ import (
 	SdApiOperation "github.com/SpenserCai/sd-webui-go/stablediffusion/client/operations"
 )
 
+// API Path: /infinite_image_browsing/db/add_custom_tag
 type InfiniteImageBrowsingDbAddCustomTag struct {
 	RequestItem  *InfiniteImageBrowsingDbAddCustomTagRequest
 	ResponseItem *InfiniteImageBrowsingDbAddCustomTagResponse

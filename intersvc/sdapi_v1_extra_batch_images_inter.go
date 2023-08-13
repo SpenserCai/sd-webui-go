@@ -5,6 +5,7 @@ import (
 	SdApiOperation "github.com/SpenserCai/sd-webui-go/stablediffusion/client/operations"
 )
 
+// API Path: /sdapi/v1/extra-batch-images
 type SdapiV1ExtraBatchImages struct {
 	RequestItem  *SdapiV1ExtraBatchImagesRequest
 	ResponseItem *SdapiV1ExtraBatchImagesResponse

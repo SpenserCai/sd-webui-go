@@ -5,6 +5,7 @@ import (
 	SdApiOperation "github.com/SpenserCai/sd-webui-go/stablediffusion/client/operations"
 )
 
+// API Path: /sdapi/v1/txt2img
 type SdapiV1Txt2img struct {
 	RequestItem  *SdapiV1Txt2imgRequest
 	ResponseItem *SdapiV1Txt2imgResponse

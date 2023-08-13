@@ -5,6 +5,7 @@ import (
 	SdApiOperation "github.com/SpenserCai/sd-webui-go/stablediffusion/client/operations"
 )
 
+// API Path: /deoldify/image
 type DeoldifyImage struct {
 	RequestItem  *DeoldifyImageRequest
 	ResponseItem *DeoldifyImageResponse

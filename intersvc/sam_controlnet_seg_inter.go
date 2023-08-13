@@ -5,6 +5,7 @@ import (
 	SdApiOperation "github.com/SpenserCai/sd-webui-go/stablediffusion/client/operations"
 )
 
+// API Path: /sam/controlnet-seg
 type SamControlnetSeg struct {
 	RequestItem  *SamControlnetSegRequest
 	ResponseItem *SamControlnetSegResponse

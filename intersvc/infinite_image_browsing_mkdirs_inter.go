@@ -5,6 +5,7 @@ import (
 	SdApiOperation "github.com/SpenserCai/sd-webui-go/stablediffusion/client/operations"
 )
 
+// API Path: /infinite_image_browsing/mkdirs
 type InfiniteImageBrowsingMkdirs struct {
 	RequestItem  *InfiniteImageBrowsingMkdirsRequest
 	ResponseItem *InfiniteImageBrowsingMkdirsResponse

@@ -5,6 +5,7 @@ import (
 	SdApiOperation "github.com/SpenserCai/sd-webui-go/stablediffusion/client/operations"
 )
 
+// API Path: /internal/progress
 type InternalProgress struct {
 	RequestItem  *InternalProgressRequest
 	ResponseItem *InternalProgressResponse

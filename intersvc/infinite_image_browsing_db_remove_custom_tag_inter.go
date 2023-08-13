@@ -5,6 +5,7 @@ import (
 	SdApiOperation "github.com/SpenserCai/sd-webui-go/stablediffusion/client/operations"
 )
 
+// API Path: /infinite_image_browsing/db/remove_custom_tag
 type InfiniteImageBrowsingDbRemoveCustomTag struct {
 	RequestItem  *InfiniteImageBrowsingDbRemoveCustomTagRequest
 	ResponseItem *InfiniteImageBrowsingDbRemoveCustomTagResponse
