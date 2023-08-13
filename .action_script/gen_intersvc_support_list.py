@@ -3,12 +3,11 @@ Author: SpenserCai
 Date: 2023-08-13 20:20:50
 version: 
 LastEditors: SpenserCai
-LastEditTime: 2023-08-13 22:14:30
+LastEditTime: 2023-08-13 22:38:37
 Description: file content
 '''
 import os
 import re
-from github import Github
 
 header = '''This is the current support list for Intersvc, which is automatically generated through GitHub Action. The list has three fields with the following explanations:
 
@@ -62,16 +61,4 @@ def gen_intersvc_support_list():
     return md_text
 
 if __name__ == "__main__":
-    # 从环境变量中获取GitHub Token
-    os.environ['GITHUB_TOKEN']
-    g = Github(os.environ['GITHUB_TOKEN'])  # 使用您的访问令牌或其他身份验证方式
-    
-    # 获取仓库
-    repo = g.get_repo("SpenserCai/sd-webui-go")  # 替换为您的用户名和仓库名称
-    
-    # 获取 Wiki
-    wiki = repo.get_wiki()
-    
-    # 更新 Wiki 页面内容
-    page = wiki.get_page("Intersvc-Support-List")  # 替换为您要更新的页面名称
-    page.update(header+gen_intersvc_support_list())  # 替换为您要更新的内容
+    print(header+gen_intersvc_support_list())  # 替换为您要更新的内容
