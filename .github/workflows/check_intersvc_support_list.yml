@@ -26,24 +26,21 @@ jobs:
       id: run_script
       run: |
         python3 .action_script/gen_intersvc_support_list.py >> list.md
-    
-    - name: Configure Git
-      run: |
-        git config --global user.name "GitHub Actions Bot"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-    - name: Clone Wiki repository
-      run: git clone https://${{ env.GITHUB_TOKEN }}@github.com/${{ github.repository }}.wiki.git
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Checkout Wiki
+      uses: actions/checkout@v2
+      with:
+        repository: ${{ github.repository }}.wiki
 
     - name: Update Wiki
       run: |
-        repository_full_name=${{ github.repository }}
-        repository_name=${repository_full_name##*/}
-        cd ./$repository_name.wiki
+        git config --global user.name "GitHub Actions Bot"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
         cp -f ../list.md ./Intersvc-Support-List.md
         git commit -am "Update Support List"
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Push Wiki
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        repository: ${{ github.repository }}.wiki
