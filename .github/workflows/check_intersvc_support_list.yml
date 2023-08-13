@@ -42,6 +42,6 @@ jobs:
         # 把SP_LIST的内容写入到Intersvc-Support-List.md中
         echo "${{ env.SP_LIST }}" | base64 -d >> ./Intersvc-Support-List.md
         git commit -am "Update Support List"
-        git pull
+        git push
       env:
         SP_LIST: ${{ steps.run_script.outputs.SP_LIST }}
