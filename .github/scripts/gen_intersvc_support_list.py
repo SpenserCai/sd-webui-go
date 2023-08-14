@@ -3,7 +3,7 @@ Author: SpenserCai
 Date: 2023-08-13 20:20:50
 version: 
 LastEditors: SpenserCai
-LastEditTime: 2023-08-14 17:48:14
+LastEditTime: 2023-08-14 17:53:17
 Description: file content
 '''
 import os
@@ -73,10 +73,11 @@ def gen_intersvc_support_list():
         if intersvc['checked'] == "√":
             checked_count += 1
     # 生成md文本 用加粗的方式标记统计结果
-    md_text += f" **Total API Count: {api_count}** **Supported API Count: {supported_count}**  **Checked API Count: {checked_count}**\n\n"
+    count_text = f" **Total API Count: {api_count}** **Supported API Count: {supported_count}**  **Checked API Count: {checked_count}**\n\n"
     for intersvc in intersvc_list:
         md_text += f"| {intersvc['path']} | {intersvc['supported']} | {intersvc['checked']} |\n"
-    return md_text
+    return md_text,count_text
 
 if __name__ == "__main__":
-    print(header+gen_intersvc_support_list())  # 替换为您要更新的内容
+    c, t = gen_intersvc_support_list()
+    print(header+c+t)  # 替换为您要更新的内容
