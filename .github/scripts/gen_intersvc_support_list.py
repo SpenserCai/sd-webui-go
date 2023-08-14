@@ -3,7 +3,7 @@ Author: SpenserCai
 Date: 2023-08-13 20:20:50
 version: 
 LastEditors: SpenserCai
-LastEditTime: 2023-08-14 03:00:09
+LastEditTime: 2023-08-14 09:37:32
 Description: file content
 '''
 import os
@@ -23,7 +23,7 @@ header = '''This is the current support list for Intersvc, which is automaticall
 def get_all_intersvc_list():
     # 获取_inter.go结尾的文件，通过_inter前面的部分获取model文件
     intersvc_list = []
-    for root, dirs, files in os.walk(os.path.join(os.path.dirname(__file__), '../intersvc')):
+    for root, dirs, files in os.walk(os.path.join(os.path.dirname(__file__), '../../intersvc')):
         for file in files:
             if file.endswith('_inter.go'):
                 intersvc_item = {}
