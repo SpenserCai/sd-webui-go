@@ -3,7 +3,7 @@ Author: SpenserCai
 Date: 2023-08-13 20:20:50
 version: 
 LastEditors: SpenserCai
-LastEditTime: 2023-08-14 17:54:26
+LastEditTime: 2023-08-14 17:57:09
 Description: file content
 '''
 import os
@@ -15,6 +15,7 @@ header = '''This is the current support list for Intersvc, which is automaticall
 - Supported: Whether it supports Intersvc calls
 - Checked: Whether it has been verified
 
+{count}
 | API Path | Supported | Checked |
 | :----: | :----: | :----: |
 '''
@@ -80,4 +81,4 @@ def gen_intersvc_support_list():
 
 if __name__ == "__main__":
     t, c = gen_intersvc_support_list()
-    print(header+c+t)  # 替换为您要更新的内容
+    print(header.format(count=c)+t)  # 替换为您要更新的内容
