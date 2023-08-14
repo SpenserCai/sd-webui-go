@@ -3,7 +3,7 @@
  * @Date: 2023-08-14 01:00:25
  * @version:
  * @LastEditors: SpenserCai
- * @LastEditTime: 2023-08-14 02:35:33
+ * @LastEditTime: 2023-08-14 09:40:14
  * @Description: file content
  */
 package intersvc
@@ -14,4 +14,5 @@ import (
 
 type SdapiV1PngInfoRequest = SdApiModel.PNGInfoRequest
 
+// Checked: True
 type SdapiV1PngInfoResponse = SdApiModel.PNGInfoResponse
