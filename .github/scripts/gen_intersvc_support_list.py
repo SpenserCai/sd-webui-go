@@ -3,7 +3,7 @@ Author: SpenserCai
 Date: 2023-08-13 20:20:50
 version: 
 LastEditors: SpenserCai
-LastEditTime: 2023-08-14 17:53:17
+LastEditTime: 2023-08-14 17:54:26
 Description: file content
 '''
 import os
@@ -79,5 +79,5 @@ def gen_intersvc_support_list():
     return md_text,count_text
 
 if __name__ == "__main__":
-    c, t = gen_intersvc_support_list()
+    t, c = gen_intersvc_support_list()
     print(header+c+t)  # 替换为您要更新的内容
