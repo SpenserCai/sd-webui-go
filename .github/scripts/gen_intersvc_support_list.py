@@ -3,7 +3,7 @@ Author: SpenserCai
 Date: 2023-08-13 20:20:50
 version: 
 LastEditors: SpenserCai
-LastEditTime: 2023-08-14 22:14:18
+LastEditTime: 2023-08-14 22:17:07
 Description: file content
 '''
 import os
@@ -57,7 +57,7 @@ def gen_intersvc_support_list():
                 if bool(re.sub(r'\s', '', struct_body)):
                     intersvc['supported'] = "√"
             # 如果可以匹配到type *Response = []SdApiModel.* 说明支持intersvc,前面的[]可以有也可以没有
-            pattern = r'type\s+(\w+)Response\s*=\s*\[?\]?+SdApiModel\.(\w+)'
+            pattern = r'type\s+(\w+)Response\s*=\s*\[?\]?SdApiModel\.(\w+)'
             matches = re.findall(pattern, code, re.DOTALL)
             if matches:
                 intersvc['supported'] = "√"
