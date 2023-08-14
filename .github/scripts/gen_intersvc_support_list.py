@@ -3,7 +3,7 @@ Author: SpenserCai
 Date: 2023-08-13 20:20:50
 version: 
 LastEditors: SpenserCai
-LastEditTime: 2023-08-14 09:37:32
+LastEditTime: 2023-08-14 17:48:14
 Description: file content
 '''
 import os
@@ -62,6 +62,18 @@ def gen_intersvc_support_list():
                 intersvc['supported'] = "√"
         if "// Checked: True" in open(intersvc['model']).read():
             intersvc['checked'] = "√"
+    # 统计intersvc_list中的intersvc的支持情况
+    supported_count = 0
+    checked_count = 0
+    api_count = len(intersvc_list)
+    # 统计的方法为判断intersvc['supported']和intersvc['checked']是否为√，如果是则计数加一
+    for intersvc in intersvc_list:
+        if intersvc['supported'] == "√":
+            supported_count += 1
+        if intersvc['checked'] == "√":
+            checked_count += 1
+    # 生成md文本 用加粗的方式标记统计结果
+    md_text += f" **Total API Count: {api_count}** **Supported API Count: {supported_count}**  **Checked API Count: {checked_count}**\n\n"
     for intersvc in intersvc_list:
         md_text += f"| {intersvc['path']} | {intersvc['supported']} | {intersvc['checked']} |\n"
     return md_text
