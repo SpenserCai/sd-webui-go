@@ -1,3 +1,11 @@
+/*
+ * @Author: SpenserCai
+ * @Date: 2023-08-14 01:00:25
+ * @version:
+ * @LastEditors: SpenserCai
+ * @LastEditTime: 2023-08-14 12:55:39
+ * @Description: file content
+ */
 package intersvc
 
 import (
@@ -6,6 +14,5 @@ import (
 
 type SdapiV1ExtraBatchImagesRequest = SdApiModel.ExtrasBatchImagesRequest
 
-type SdapiV1ExtraBatchImagesResponse struct {
-
-}
+// Checked: True
+type SdapiV1ExtraBatchImagesResponse = SdApiModel.ExtrasBatchImagesResponse
