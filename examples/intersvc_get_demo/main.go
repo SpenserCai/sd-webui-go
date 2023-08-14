@@ -3,7 +3,7 @@
  * @Date: 2023-08-14 21:51:22
  * @version:
  * @LastEditors: SpenserCai
- * @LastEditTime: 2023-08-14 22:06:52
+ * @LastEditTime: 2023-08-14 22:23:31
  * @Description: file content
  */
 package main
@@ -33,6 +33,17 @@ func main() {
 		fmt.Println(item.Sha256)
 		fmt.Println(item.Config)
 		fmt.Println("====================================")
+	}
+
+	sam_models_inter := &intersvc.SamSamModel{}
+	sam_models_inter.Action(sdClient)
+	if sam_models_inter.Error != nil {
+		panic(sam_models_inter.Error)
+	}
+	sam_response := sam_models_inter.GetResponse()
+	for _, item := range *sam_response {
+		// 遍历item的每个字段
+		fmt.Println(item)
 	}
 
 }
