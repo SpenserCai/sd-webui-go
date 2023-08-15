@@ -35,6 +35,12 @@ func (o *ExtrasSingleImageAPISdapiV1ExtraSingleImagePostReader) ReadResponse(res
 			return nil, err
 		}
 		return nil, result
+	case 500:
+		result := NewExtrasSingleImageAPISdapiV1ExtraSingleImagePostInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -167,6 +173,74 @@ func (o *ExtrasSingleImageAPISdapiV1ExtraSingleImagePostUnprocessableEntity) Get
 func (o *ExtrasSingleImageAPISdapiV1ExtraSingleImagePostUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.HTTPValidationError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewExtrasSingleImageAPISdapiV1ExtraSingleImagePostInternalServerError creates a ExtrasSingleImageAPISdapiV1ExtraSingleImagePostInternalServerError with default headers values
+func NewExtrasSingleImageAPISdapiV1ExtraSingleImagePostInternalServerError() *ExtrasSingleImageAPISdapiV1ExtraSingleImagePostInternalServerError {
+	return &ExtrasSingleImageAPISdapiV1ExtraSingleImagePostInternalServerError{}
+}
+
+/*
+ExtrasSingleImageAPISdapiV1ExtraSingleImagePostInternalServerError describes a response with status code 500, with default header values.
+
+HTTPException
+*/
+type ExtrasSingleImageAPISdapiV1ExtraSingleImagePostInternalServerError struct {
+	Payload *models.HTTPException
+}
+
+// IsSuccess returns true when this extras single image Api sdapi v1 extra single image post internal server error response has a 2xx status code
+func (o *ExtrasSingleImageAPISdapiV1ExtraSingleImagePostInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this extras single image Api sdapi v1 extra single image post internal server error response has a 3xx status code
+func (o *ExtrasSingleImageAPISdapiV1ExtraSingleImagePostInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this extras single image Api sdapi v1 extra single image post internal server error response has a 4xx status code
+func (o *ExtrasSingleImageAPISdapiV1ExtraSingleImagePostInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this extras single image Api sdapi v1 extra single image post internal server error response has a 5xx status code
+func (o *ExtrasSingleImageAPISdapiV1ExtraSingleImagePostInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this extras single image Api sdapi v1 extra single image post internal server error response a status code equal to that given
+func (o *ExtrasSingleImageAPISdapiV1ExtraSingleImagePostInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
+// Code gets the status code for the extras single image Api sdapi v1 extra single image post internal server error response
+func (o *ExtrasSingleImageAPISdapiV1ExtraSingleImagePostInternalServerError) Code() int {
+	return 500
+}
+
+func (o *ExtrasSingleImageAPISdapiV1ExtraSingleImagePostInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /sdapi/v1/extra-single-image][%d] extrasSingleImageApiSdapiV1ExtraSingleImagePostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *ExtrasSingleImageAPISdapiV1ExtraSingleImagePostInternalServerError) String() string {
+	return fmt.Sprintf("[POST /sdapi/v1/extra-single-image][%d] extrasSingleImageApiSdapiV1ExtraSingleImagePostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *ExtrasSingleImageAPISdapiV1ExtraSingleImagePostInternalServerError) GetPayload() *models.HTTPException {
+	return o.Payload
+}
+
+func (o *ExtrasSingleImageAPISdapiV1ExtraSingleImagePostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.HTTPException)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

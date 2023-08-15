@@ -35,6 +35,12 @@ func (o *DeoldifyImageDeoldifyImagePostReader) ReadResponse(response runtime.Cli
 			return nil, err
 		}
 		return nil, result
+	case 500:
+		result := NewDeoldifyImageDeoldifyImagePostInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -165,6 +171,74 @@ func (o *DeoldifyImageDeoldifyImagePostUnprocessableEntity) GetPayload() *models
 func (o *DeoldifyImageDeoldifyImagePostUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.HTTPValidationError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewDeoldifyImageDeoldifyImagePostInternalServerError creates a DeoldifyImageDeoldifyImagePostInternalServerError with default headers values
+func NewDeoldifyImageDeoldifyImagePostInternalServerError() *DeoldifyImageDeoldifyImagePostInternalServerError {
+	return &DeoldifyImageDeoldifyImagePostInternalServerError{}
+}
+
+/*
+DeoldifyImageDeoldifyImagePostInternalServerError describes a response with status code 500, with default header values.
+
+HTTPException
+*/
+type DeoldifyImageDeoldifyImagePostInternalServerError struct {
+	Payload *models.HTTPException
+}
+
+// IsSuccess returns true when this deoldify image deoldify image post internal server error response has a 2xx status code
+func (o *DeoldifyImageDeoldifyImagePostInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this deoldify image deoldify image post internal server error response has a 3xx status code
+func (o *DeoldifyImageDeoldifyImagePostInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this deoldify image deoldify image post internal server error response has a 4xx status code
+func (o *DeoldifyImageDeoldifyImagePostInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this deoldify image deoldify image post internal server error response has a 5xx status code
+func (o *DeoldifyImageDeoldifyImagePostInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this deoldify image deoldify image post internal server error response a status code equal to that given
+func (o *DeoldifyImageDeoldifyImagePostInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
+// Code gets the status code for the deoldify image deoldify image post internal server error response
+func (o *DeoldifyImageDeoldifyImagePostInternalServerError) Code() int {
+	return 500
+}
+
+func (o *DeoldifyImageDeoldifyImagePostInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /deoldify/image][%d] deoldifyImageDeoldifyImagePostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *DeoldifyImageDeoldifyImagePostInternalServerError) String() string {
+	return fmt.Sprintf("[POST /deoldify/image][%d] deoldifyImageDeoldifyImagePostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *DeoldifyImageDeoldifyImagePostInternalServerError) GetPayload() *models.HTTPException {
+	return o.Payload
+}
+
+func (o *DeoldifyImageDeoldifyImagePostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.HTTPException)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

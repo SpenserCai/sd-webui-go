@@ -35,6 +35,12 @@ func (o *ZipFilesInfiniteImageBrowsingZipPostReader) ReadResponse(response runti
 			return nil, err
 		}
 		return nil, result
+	case 500:
+		result := NewZipFilesInfiniteImageBrowsingZipPostInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -165,6 +171,74 @@ func (o *ZipFilesInfiniteImageBrowsingZipPostUnprocessableEntity) GetPayload() *
 func (o *ZipFilesInfiniteImageBrowsingZipPostUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.HTTPValidationError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewZipFilesInfiniteImageBrowsingZipPostInternalServerError creates a ZipFilesInfiniteImageBrowsingZipPostInternalServerError with default headers values
+func NewZipFilesInfiniteImageBrowsingZipPostInternalServerError() *ZipFilesInfiniteImageBrowsingZipPostInternalServerError {
+	return &ZipFilesInfiniteImageBrowsingZipPostInternalServerError{}
+}
+
+/*
+ZipFilesInfiniteImageBrowsingZipPostInternalServerError describes a response with status code 500, with default header values.
+
+HTTPException
+*/
+type ZipFilesInfiniteImageBrowsingZipPostInternalServerError struct {
+	Payload *models.HTTPException
+}
+
+// IsSuccess returns true when this zip files infinite image browsing zip post internal server error response has a 2xx status code
+func (o *ZipFilesInfiniteImageBrowsingZipPostInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this zip files infinite image browsing zip post internal server error response has a 3xx status code
+func (o *ZipFilesInfiniteImageBrowsingZipPostInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this zip files infinite image browsing zip post internal server error response has a 4xx status code
+func (o *ZipFilesInfiniteImageBrowsingZipPostInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this zip files infinite image browsing zip post internal server error response has a 5xx status code
+func (o *ZipFilesInfiniteImageBrowsingZipPostInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this zip files infinite image browsing zip post internal server error response a status code equal to that given
+func (o *ZipFilesInfiniteImageBrowsingZipPostInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
+// Code gets the status code for the zip files infinite image browsing zip post internal server error response
+func (o *ZipFilesInfiniteImageBrowsingZipPostInternalServerError) Code() int {
+	return 500
+}
+
+func (o *ZipFilesInfiniteImageBrowsingZipPostInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /infinite_image_browsing/zip][%d] zipFilesInfiniteImageBrowsingZipPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *ZipFilesInfiniteImageBrowsingZipPostInternalServerError) String() string {
+	return fmt.Sprintf("[POST /infinite_image_browsing/zip][%d] zipFilesInfiniteImageBrowsingZipPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *ZipFilesInfiniteImageBrowsingZipPostInternalServerError) GetPayload() *models.HTTPException {
+	return o.Payload
+}
+
+func (o *ZipFilesInfiniteImageBrowsingZipPostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.HTTPException)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

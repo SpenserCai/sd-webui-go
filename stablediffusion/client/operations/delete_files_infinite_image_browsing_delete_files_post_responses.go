@@ -35,6 +35,12 @@ func (o *DeleteFilesInfiniteImageBrowsingDeleteFilesPostReader) ReadResponse(res
 			return nil, err
 		}
 		return nil, result
+	case 500:
+		result := NewDeleteFilesInfiniteImageBrowsingDeleteFilesPostInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -165,6 +171,74 @@ func (o *DeleteFilesInfiniteImageBrowsingDeleteFilesPostUnprocessableEntity) Get
 func (o *DeleteFilesInfiniteImageBrowsingDeleteFilesPostUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.HTTPValidationError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewDeleteFilesInfiniteImageBrowsingDeleteFilesPostInternalServerError creates a DeleteFilesInfiniteImageBrowsingDeleteFilesPostInternalServerError with default headers values
+func NewDeleteFilesInfiniteImageBrowsingDeleteFilesPostInternalServerError() *DeleteFilesInfiniteImageBrowsingDeleteFilesPostInternalServerError {
+	return &DeleteFilesInfiniteImageBrowsingDeleteFilesPostInternalServerError{}
+}
+
+/*
+DeleteFilesInfiniteImageBrowsingDeleteFilesPostInternalServerError describes a response with status code 500, with default header values.
+
+HTTPException
+*/
+type DeleteFilesInfiniteImageBrowsingDeleteFilesPostInternalServerError struct {
+	Payload *models.HTTPException
+}
+
+// IsSuccess returns true when this delete files infinite image browsing delete files post internal server error response has a 2xx status code
+func (o *DeleteFilesInfiniteImageBrowsingDeleteFilesPostInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete files infinite image browsing delete files post internal server error response has a 3xx status code
+func (o *DeleteFilesInfiniteImageBrowsingDeleteFilesPostInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete files infinite image browsing delete files post internal server error response has a 4xx status code
+func (o *DeleteFilesInfiniteImageBrowsingDeleteFilesPostInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete files infinite image browsing delete files post internal server error response has a 5xx status code
+func (o *DeleteFilesInfiniteImageBrowsingDeleteFilesPostInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this delete files infinite image browsing delete files post internal server error response a status code equal to that given
+func (o *DeleteFilesInfiniteImageBrowsingDeleteFilesPostInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
+// Code gets the status code for the delete files infinite image browsing delete files post internal server error response
+func (o *DeleteFilesInfiniteImageBrowsingDeleteFilesPostInternalServerError) Code() int {
+	return 500
+}
+
+func (o *DeleteFilesInfiniteImageBrowsingDeleteFilesPostInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /infinite_image_browsing/delete_files][%d] deleteFilesInfiniteImageBrowsingDeleteFilesPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *DeleteFilesInfiniteImageBrowsingDeleteFilesPostInternalServerError) String() string {
+	return fmt.Sprintf("[POST /infinite_image_browsing/delete_files][%d] deleteFilesInfiniteImageBrowsingDeleteFilesPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *DeleteFilesInfiniteImageBrowsingDeleteFilesPostInternalServerError) GetPayload() *models.HTTPException {
+	return o.Payload
+}
+
+func (o *DeleteFilesInfiniteImageBrowsingDeleteFilesPostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.HTTPException)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

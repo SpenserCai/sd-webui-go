@@ -35,6 +35,12 @@ func (o *InterrogateapiSdapiV1InterrogatePostReader) ReadResponse(response runti
 			return nil, err
 		}
 		return nil, result
+	case 500:
+		result := NewInterrogateapiSdapiV1InterrogatePostInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -165,6 +171,74 @@ func (o *InterrogateapiSdapiV1InterrogatePostUnprocessableEntity) GetPayload() *
 func (o *InterrogateapiSdapiV1InterrogatePostUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.HTTPValidationError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewInterrogateapiSdapiV1InterrogatePostInternalServerError creates a InterrogateapiSdapiV1InterrogatePostInternalServerError with default headers values
+func NewInterrogateapiSdapiV1InterrogatePostInternalServerError() *InterrogateapiSdapiV1InterrogatePostInternalServerError {
+	return &InterrogateapiSdapiV1InterrogatePostInternalServerError{}
+}
+
+/*
+InterrogateapiSdapiV1InterrogatePostInternalServerError describes a response with status code 500, with default header values.
+
+HTTPException
+*/
+type InterrogateapiSdapiV1InterrogatePostInternalServerError struct {
+	Payload *models.HTTPException
+}
+
+// IsSuccess returns true when this interrogateapi sdapi v1 interrogate post internal server error response has a 2xx status code
+func (o *InterrogateapiSdapiV1InterrogatePostInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this interrogateapi sdapi v1 interrogate post internal server error response has a 3xx status code
+func (o *InterrogateapiSdapiV1InterrogatePostInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this interrogateapi sdapi v1 interrogate post internal server error response has a 4xx status code
+func (o *InterrogateapiSdapiV1InterrogatePostInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this interrogateapi sdapi v1 interrogate post internal server error response has a 5xx status code
+func (o *InterrogateapiSdapiV1InterrogatePostInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this interrogateapi sdapi v1 interrogate post internal server error response a status code equal to that given
+func (o *InterrogateapiSdapiV1InterrogatePostInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
+// Code gets the status code for the interrogateapi sdapi v1 interrogate post internal server error response
+func (o *InterrogateapiSdapiV1InterrogatePostInternalServerError) Code() int {
+	return 500
+}
+
+func (o *InterrogateapiSdapiV1InterrogatePostInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /sdapi/v1/interrogate][%d] interrogateapiSdapiV1InterrogatePostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *InterrogateapiSdapiV1InterrogatePostInternalServerError) String() string {
+	return fmt.Sprintf("[POST /sdapi/v1/interrogate][%d] interrogateapiSdapiV1InterrogatePostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *InterrogateapiSdapiV1InterrogatePostInternalServerError) GetPayload() *models.HTTPException {
+	return o.Payload
+}
+
+func (o *InterrogateapiSdapiV1InterrogatePostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.HTTPException)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

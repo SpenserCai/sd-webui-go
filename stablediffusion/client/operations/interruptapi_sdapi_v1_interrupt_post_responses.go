@@ -11,6 +11,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/SpenserCai/sd-webui-go/stablediffusion/models"
 )
 
 // InterruptapiSdapiV1InterruptPostReader is a Reader for the InterruptapiSdapiV1InterruptPost structure.
@@ -27,6 +29,12 @@ func (o *InterruptapiSdapiV1InterruptPostReader) ReadResponse(response runtime.C
 			return nil, err
 		}
 		return result, nil
+	case 500:
+		result := NewInterruptapiSdapiV1InterruptPostInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -92,6 +100,74 @@ func (o *InterruptapiSdapiV1InterruptPostOK) readResponse(response runtime.Clien
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewInterruptapiSdapiV1InterruptPostInternalServerError creates a InterruptapiSdapiV1InterruptPostInternalServerError with default headers values
+func NewInterruptapiSdapiV1InterruptPostInternalServerError() *InterruptapiSdapiV1InterruptPostInternalServerError {
+	return &InterruptapiSdapiV1InterruptPostInternalServerError{}
+}
+
+/*
+InterruptapiSdapiV1InterruptPostInternalServerError describes a response with status code 500, with default header values.
+
+HTTPException
+*/
+type InterruptapiSdapiV1InterruptPostInternalServerError struct {
+	Payload *models.HTTPException
+}
+
+// IsSuccess returns true when this interruptapi sdapi v1 interrupt post internal server error response has a 2xx status code
+func (o *InterruptapiSdapiV1InterruptPostInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this interruptapi sdapi v1 interrupt post internal server error response has a 3xx status code
+func (o *InterruptapiSdapiV1InterruptPostInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this interruptapi sdapi v1 interrupt post internal server error response has a 4xx status code
+func (o *InterruptapiSdapiV1InterruptPostInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this interruptapi sdapi v1 interrupt post internal server error response has a 5xx status code
+func (o *InterruptapiSdapiV1InterruptPostInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this interruptapi sdapi v1 interrupt post internal server error response a status code equal to that given
+func (o *InterruptapiSdapiV1InterruptPostInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
+// Code gets the status code for the interruptapi sdapi v1 interrupt post internal server error response
+func (o *InterruptapiSdapiV1InterruptPostInternalServerError) Code() int {
+	return 500
+}
+
+func (o *InterruptapiSdapiV1InterruptPostInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /sdapi/v1/interrupt][%d] interruptapiSdapiV1InterruptPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *InterruptapiSdapiV1InterruptPostInternalServerError) String() string {
+	return fmt.Sprintf("[POST /sdapi/v1/interrupt][%d] interruptapiSdapiV1InterruptPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *InterruptapiSdapiV1InterruptPostInternalServerError) GetPayload() *models.HTTPException {
+	return o.Payload
+}
+
+func (o *InterruptapiSdapiV1InterruptPostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.HTTPException)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

@@ -35,6 +35,12 @@ func (o *TrainHypernetworkSdapiV1TrainHypernetworkPostReader) ReadResponse(respo
 			return nil, err
 		}
 		return nil, result
+	case 500:
+		result := NewTrainHypernetworkSdapiV1TrainHypernetworkPostInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -167,6 +173,74 @@ func (o *TrainHypernetworkSdapiV1TrainHypernetworkPostUnprocessableEntity) GetPa
 func (o *TrainHypernetworkSdapiV1TrainHypernetworkPostUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.HTTPValidationError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewTrainHypernetworkSdapiV1TrainHypernetworkPostInternalServerError creates a TrainHypernetworkSdapiV1TrainHypernetworkPostInternalServerError with default headers values
+func NewTrainHypernetworkSdapiV1TrainHypernetworkPostInternalServerError() *TrainHypernetworkSdapiV1TrainHypernetworkPostInternalServerError {
+	return &TrainHypernetworkSdapiV1TrainHypernetworkPostInternalServerError{}
+}
+
+/*
+TrainHypernetworkSdapiV1TrainHypernetworkPostInternalServerError describes a response with status code 500, with default header values.
+
+HTTPException
+*/
+type TrainHypernetworkSdapiV1TrainHypernetworkPostInternalServerError struct {
+	Payload *models.HTTPException
+}
+
+// IsSuccess returns true when this train hypernetwork sdapi v1 train hypernetwork post internal server error response has a 2xx status code
+func (o *TrainHypernetworkSdapiV1TrainHypernetworkPostInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this train hypernetwork sdapi v1 train hypernetwork post internal server error response has a 3xx status code
+func (o *TrainHypernetworkSdapiV1TrainHypernetworkPostInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this train hypernetwork sdapi v1 train hypernetwork post internal server error response has a 4xx status code
+func (o *TrainHypernetworkSdapiV1TrainHypernetworkPostInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this train hypernetwork sdapi v1 train hypernetwork post internal server error response has a 5xx status code
+func (o *TrainHypernetworkSdapiV1TrainHypernetworkPostInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this train hypernetwork sdapi v1 train hypernetwork post internal server error response a status code equal to that given
+func (o *TrainHypernetworkSdapiV1TrainHypernetworkPostInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
+// Code gets the status code for the train hypernetwork sdapi v1 train hypernetwork post internal server error response
+func (o *TrainHypernetworkSdapiV1TrainHypernetworkPostInternalServerError) Code() int {
+	return 500
+}
+
+func (o *TrainHypernetworkSdapiV1TrainHypernetworkPostInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /sdapi/v1/train/hypernetwork][%d] trainHypernetworkSdapiV1TrainHypernetworkPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *TrainHypernetworkSdapiV1TrainHypernetworkPostInternalServerError) String() string {
+	return fmt.Sprintf("[POST /sdapi/v1/train/hypernetwork][%d] trainHypernetworkSdapiV1TrainHypernetworkPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *TrainHypernetworkSdapiV1TrainHypernetworkPostInternalServerError) GetPayload() *models.HTTPException {
+	return o.Payload
+}
+
+func (o *TrainHypernetworkSdapiV1TrainHypernetworkPostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.HTTPException)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

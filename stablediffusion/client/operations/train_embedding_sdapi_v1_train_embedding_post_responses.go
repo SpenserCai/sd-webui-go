@@ -35,6 +35,12 @@ func (o *TrainEmbeddingSdapiV1TrainEmbeddingPostReader) ReadResponse(response ru
 			return nil, err
 		}
 		return nil, result
+	case 500:
+		result := NewTrainEmbeddingSdapiV1TrainEmbeddingPostInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -167,6 +173,74 @@ func (o *TrainEmbeddingSdapiV1TrainEmbeddingPostUnprocessableEntity) GetPayload(
 func (o *TrainEmbeddingSdapiV1TrainEmbeddingPostUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.HTTPValidationError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewTrainEmbeddingSdapiV1TrainEmbeddingPostInternalServerError creates a TrainEmbeddingSdapiV1TrainEmbeddingPostInternalServerError with default headers values
+func NewTrainEmbeddingSdapiV1TrainEmbeddingPostInternalServerError() *TrainEmbeddingSdapiV1TrainEmbeddingPostInternalServerError {
+	return &TrainEmbeddingSdapiV1TrainEmbeddingPostInternalServerError{}
+}
+
+/*
+TrainEmbeddingSdapiV1TrainEmbeddingPostInternalServerError describes a response with status code 500, with default header values.
+
+HTTPException
+*/
+type TrainEmbeddingSdapiV1TrainEmbeddingPostInternalServerError struct {
+	Payload *models.HTTPException
+}
+
+// IsSuccess returns true when this train embedding sdapi v1 train embedding post internal server error response has a 2xx status code
+func (o *TrainEmbeddingSdapiV1TrainEmbeddingPostInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this train embedding sdapi v1 train embedding post internal server error response has a 3xx status code
+func (o *TrainEmbeddingSdapiV1TrainEmbeddingPostInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this train embedding sdapi v1 train embedding post internal server error response has a 4xx status code
+func (o *TrainEmbeddingSdapiV1TrainEmbeddingPostInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this train embedding sdapi v1 train embedding post internal server error response has a 5xx status code
+func (o *TrainEmbeddingSdapiV1TrainEmbeddingPostInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this train embedding sdapi v1 train embedding post internal server error response a status code equal to that given
+func (o *TrainEmbeddingSdapiV1TrainEmbeddingPostInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
+// Code gets the status code for the train embedding sdapi v1 train embedding post internal server error response
+func (o *TrainEmbeddingSdapiV1TrainEmbeddingPostInternalServerError) Code() int {
+	return 500
+}
+
+func (o *TrainEmbeddingSdapiV1TrainEmbeddingPostInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /sdapi/v1/train/embedding][%d] trainEmbeddingSdapiV1TrainEmbeddingPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *TrainEmbeddingSdapiV1TrainEmbeddingPostInternalServerError) String() string {
+	return fmt.Sprintf("[POST /sdapi/v1/train/embedding][%d] trainEmbeddingSdapiV1TrainEmbeddingPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *TrainEmbeddingSdapiV1TrainEmbeddingPostInternalServerError) GetPayload() *models.HTTPException {
+	return o.Payload
+}
+
+func (o *TrainEmbeddingSdapiV1TrainEmbeddingPostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.HTTPException)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

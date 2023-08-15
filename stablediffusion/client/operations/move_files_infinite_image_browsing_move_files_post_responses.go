@@ -35,6 +35,12 @@ func (o *MoveFilesInfiniteImageBrowsingMoveFilesPostReader) ReadResponse(respons
 			return nil, err
 		}
 		return nil, result
+	case 500:
+		result := NewMoveFilesInfiniteImageBrowsingMoveFilesPostInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -165,6 +171,74 @@ func (o *MoveFilesInfiniteImageBrowsingMoveFilesPostUnprocessableEntity) GetPayl
 func (o *MoveFilesInfiniteImageBrowsingMoveFilesPostUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.HTTPValidationError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewMoveFilesInfiniteImageBrowsingMoveFilesPostInternalServerError creates a MoveFilesInfiniteImageBrowsingMoveFilesPostInternalServerError with default headers values
+func NewMoveFilesInfiniteImageBrowsingMoveFilesPostInternalServerError() *MoveFilesInfiniteImageBrowsingMoveFilesPostInternalServerError {
+	return &MoveFilesInfiniteImageBrowsingMoveFilesPostInternalServerError{}
+}
+
+/*
+MoveFilesInfiniteImageBrowsingMoveFilesPostInternalServerError describes a response with status code 500, with default header values.
+
+HTTPException
+*/
+type MoveFilesInfiniteImageBrowsingMoveFilesPostInternalServerError struct {
+	Payload *models.HTTPException
+}
+
+// IsSuccess returns true when this move files infinite image browsing move files post internal server error response has a 2xx status code
+func (o *MoveFilesInfiniteImageBrowsingMoveFilesPostInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this move files infinite image browsing move files post internal server error response has a 3xx status code
+func (o *MoveFilesInfiniteImageBrowsingMoveFilesPostInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this move files infinite image browsing move files post internal server error response has a 4xx status code
+func (o *MoveFilesInfiniteImageBrowsingMoveFilesPostInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this move files infinite image browsing move files post internal server error response has a 5xx status code
+func (o *MoveFilesInfiniteImageBrowsingMoveFilesPostInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this move files infinite image browsing move files post internal server error response a status code equal to that given
+func (o *MoveFilesInfiniteImageBrowsingMoveFilesPostInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
+// Code gets the status code for the move files infinite image browsing move files post internal server error response
+func (o *MoveFilesInfiniteImageBrowsingMoveFilesPostInternalServerError) Code() int {
+	return 500
+}
+
+func (o *MoveFilesInfiniteImageBrowsingMoveFilesPostInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /infinite_image_browsing/move_files][%d] moveFilesInfiniteImageBrowsingMoveFilesPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *MoveFilesInfiniteImageBrowsingMoveFilesPostInternalServerError) String() string {
+	return fmt.Sprintf("[POST /infinite_image_browsing/move_files][%d] moveFilesInfiniteImageBrowsingMoveFilesPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *MoveFilesInfiniteImageBrowsingMoveFilesPostInternalServerError) GetPayload() *models.HTTPException {
+	return o.Payload
+}
+
+func (o *MoveFilesInfiniteImageBrowsingMoveFilesPostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.HTTPException)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

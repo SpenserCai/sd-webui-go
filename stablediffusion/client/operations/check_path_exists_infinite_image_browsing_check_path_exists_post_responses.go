@@ -35,6 +35,12 @@ func (o *CheckPathExistsInfiniteImageBrowsingCheckPathExistsPostReader) ReadResp
 			return nil, err
 		}
 		return nil, result
+	case 500:
+		result := NewCheckPathExistsInfiniteImageBrowsingCheckPathExistsPostInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -165,6 +171,74 @@ func (o *CheckPathExistsInfiniteImageBrowsingCheckPathExistsPostUnprocessableEnt
 func (o *CheckPathExistsInfiniteImageBrowsingCheckPathExistsPostUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.HTTPValidationError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewCheckPathExistsInfiniteImageBrowsingCheckPathExistsPostInternalServerError creates a CheckPathExistsInfiniteImageBrowsingCheckPathExistsPostInternalServerError with default headers values
+func NewCheckPathExistsInfiniteImageBrowsingCheckPathExistsPostInternalServerError() *CheckPathExistsInfiniteImageBrowsingCheckPathExistsPostInternalServerError {
+	return &CheckPathExistsInfiniteImageBrowsingCheckPathExistsPostInternalServerError{}
+}
+
+/*
+CheckPathExistsInfiniteImageBrowsingCheckPathExistsPostInternalServerError describes a response with status code 500, with default header values.
+
+HTTPException
+*/
+type CheckPathExistsInfiniteImageBrowsingCheckPathExistsPostInternalServerError struct {
+	Payload *models.HTTPException
+}
+
+// IsSuccess returns true when this check path exists infinite image browsing check path exists post internal server error response has a 2xx status code
+func (o *CheckPathExistsInfiniteImageBrowsingCheckPathExistsPostInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this check path exists infinite image browsing check path exists post internal server error response has a 3xx status code
+func (o *CheckPathExistsInfiniteImageBrowsingCheckPathExistsPostInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this check path exists infinite image browsing check path exists post internal server error response has a 4xx status code
+func (o *CheckPathExistsInfiniteImageBrowsingCheckPathExistsPostInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this check path exists infinite image browsing check path exists post internal server error response has a 5xx status code
+func (o *CheckPathExistsInfiniteImageBrowsingCheckPathExistsPostInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this check path exists infinite image browsing check path exists post internal server error response a status code equal to that given
+func (o *CheckPathExistsInfiniteImageBrowsingCheckPathExistsPostInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
+// Code gets the status code for the check path exists infinite image browsing check path exists post internal server error response
+func (o *CheckPathExistsInfiniteImageBrowsingCheckPathExistsPostInternalServerError) Code() int {
+	return 500
+}
+
+func (o *CheckPathExistsInfiniteImageBrowsingCheckPathExistsPostInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /infinite_image_browsing/check_path_exists][%d] checkPathExistsInfiniteImageBrowsingCheckPathExistsPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *CheckPathExistsInfiniteImageBrowsingCheckPathExistsPostInternalServerError) String() string {
+	return fmt.Sprintf("[POST /infinite_image_browsing/check_path_exists][%d] checkPathExistsInfiniteImageBrowsingCheckPathExistsPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *CheckPathExistsInfiniteImageBrowsingCheckPathExistsPostInternalServerError) GetPayload() *models.HTTPException {
+	return o.Payload
+}
+
+func (o *CheckPathExistsInfiniteImageBrowsingCheckPathExistsPostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.HTTPException)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

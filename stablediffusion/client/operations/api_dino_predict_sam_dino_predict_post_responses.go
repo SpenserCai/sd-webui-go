@@ -35,6 +35,12 @@ func (o *APIDinoPredictSamDinoPredictPostReader) ReadResponse(response runtime.C
 			return nil, err
 		}
 		return nil, result
+	case 500:
+		result := NewAPIDinoPredictSamDinoPredictPostInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -165,6 +171,74 @@ func (o *APIDinoPredictSamDinoPredictPostUnprocessableEntity) GetPayload() *mode
 func (o *APIDinoPredictSamDinoPredictPostUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.HTTPValidationError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAPIDinoPredictSamDinoPredictPostInternalServerError creates a APIDinoPredictSamDinoPredictPostInternalServerError with default headers values
+func NewAPIDinoPredictSamDinoPredictPostInternalServerError() *APIDinoPredictSamDinoPredictPostInternalServerError {
+	return &APIDinoPredictSamDinoPredictPostInternalServerError{}
+}
+
+/*
+APIDinoPredictSamDinoPredictPostInternalServerError describes a response with status code 500, with default header values.
+
+HTTPException
+*/
+type APIDinoPredictSamDinoPredictPostInternalServerError struct {
+	Payload *models.HTTPException
+}
+
+// IsSuccess returns true when this api dino predict sam dino predict post internal server error response has a 2xx status code
+func (o *APIDinoPredictSamDinoPredictPostInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this api dino predict sam dino predict post internal server error response has a 3xx status code
+func (o *APIDinoPredictSamDinoPredictPostInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this api dino predict sam dino predict post internal server error response has a 4xx status code
+func (o *APIDinoPredictSamDinoPredictPostInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this api dino predict sam dino predict post internal server error response has a 5xx status code
+func (o *APIDinoPredictSamDinoPredictPostInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this api dino predict sam dino predict post internal server error response a status code equal to that given
+func (o *APIDinoPredictSamDinoPredictPostInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
+// Code gets the status code for the api dino predict sam dino predict post internal server error response
+func (o *APIDinoPredictSamDinoPredictPostInternalServerError) Code() int {
+	return 500
+}
+
+func (o *APIDinoPredictSamDinoPredictPostInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /sam/dino-predict][%d] apiDinoPredictSamDinoPredictPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *APIDinoPredictSamDinoPredictPostInternalServerError) String() string {
+	return fmt.Sprintf("[POST /sam/dino-predict][%d] apiDinoPredictSamDinoPredictPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *APIDinoPredictSamDinoPredictPostInternalServerError) GetPayload() *models.HTTPException {
+	return o.Payload
+}
+
+func (o *APIDinoPredictSamDinoPredictPostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.HTTPException)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
