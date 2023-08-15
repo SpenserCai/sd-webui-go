@@ -35,6 +35,12 @@ func (o *PnginfoapiSdapiV1PngInfoPostReader) ReadResponse(response runtime.Clien
 			return nil, err
 		}
 		return nil, result
+	case 500:
+		result := NewPnginfoapiSdapiV1PngInfoPostInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -167,6 +173,74 @@ func (o *PnginfoapiSdapiV1PngInfoPostUnprocessableEntity) GetPayload() *models.H
 func (o *PnginfoapiSdapiV1PngInfoPostUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.HTTPValidationError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPnginfoapiSdapiV1PngInfoPostInternalServerError creates a PnginfoapiSdapiV1PngInfoPostInternalServerError with default headers values
+func NewPnginfoapiSdapiV1PngInfoPostInternalServerError() *PnginfoapiSdapiV1PngInfoPostInternalServerError {
+	return &PnginfoapiSdapiV1PngInfoPostInternalServerError{}
+}
+
+/*
+PnginfoapiSdapiV1PngInfoPostInternalServerError describes a response with status code 500, with default header values.
+
+HTTPException
+*/
+type PnginfoapiSdapiV1PngInfoPostInternalServerError struct {
+	Payload *models.HTTPException
+}
+
+// IsSuccess returns true when this pnginfoapi sdapi v1 png info post internal server error response has a 2xx status code
+func (o *PnginfoapiSdapiV1PngInfoPostInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this pnginfoapi sdapi v1 png info post internal server error response has a 3xx status code
+func (o *PnginfoapiSdapiV1PngInfoPostInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this pnginfoapi sdapi v1 png info post internal server error response has a 4xx status code
+func (o *PnginfoapiSdapiV1PngInfoPostInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this pnginfoapi sdapi v1 png info post internal server error response has a 5xx status code
+func (o *PnginfoapiSdapiV1PngInfoPostInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this pnginfoapi sdapi v1 png info post internal server error response a status code equal to that given
+func (o *PnginfoapiSdapiV1PngInfoPostInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
+// Code gets the status code for the pnginfoapi sdapi v1 png info post internal server error response
+func (o *PnginfoapiSdapiV1PngInfoPostInternalServerError) Code() int {
+	return 500
+}
+
+func (o *PnginfoapiSdapiV1PngInfoPostInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /sdapi/v1/png-info][%d] pnginfoapiSdapiV1PngInfoPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *PnginfoapiSdapiV1PngInfoPostInternalServerError) String() string {
+	return fmt.Sprintf("[POST /sdapi/v1/png-info][%d] pnginfoapiSdapiV1PngInfoPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *PnginfoapiSdapiV1PngInfoPostInternalServerError) GetPayload() *models.HTTPException {
+	return o.Payload
+}
+
+func (o *PnginfoapiSdapiV1PngInfoPostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.HTTPException)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

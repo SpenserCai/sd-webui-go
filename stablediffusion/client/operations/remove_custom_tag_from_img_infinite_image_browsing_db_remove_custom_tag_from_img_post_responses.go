@@ -35,6 +35,12 @@ func (o *RemoveCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPost
 			return nil, err
 		}
 		return nil, result
+	case 500:
+		result := NewRemoveCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPostInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -165,6 +171,74 @@ func (o *RemoveCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPost
 func (o *RemoveCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPostUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.HTTPValidationError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewRemoveCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPostInternalServerError creates a RemoveCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPostInternalServerError with default headers values
+func NewRemoveCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPostInternalServerError() *RemoveCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPostInternalServerError {
+	return &RemoveCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPostInternalServerError{}
+}
+
+/*
+RemoveCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPostInternalServerError describes a response with status code 500, with default header values.
+
+HTTPException
+*/
+type RemoveCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPostInternalServerError struct {
+	Payload *models.HTTPException
+}
+
+// IsSuccess returns true when this remove custom tag from img infinite image browsing db remove custom tag from img post internal server error response has a 2xx status code
+func (o *RemoveCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPostInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this remove custom tag from img infinite image browsing db remove custom tag from img post internal server error response has a 3xx status code
+func (o *RemoveCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPostInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this remove custom tag from img infinite image browsing db remove custom tag from img post internal server error response has a 4xx status code
+func (o *RemoveCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPostInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this remove custom tag from img infinite image browsing db remove custom tag from img post internal server error response has a 5xx status code
+func (o *RemoveCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPostInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this remove custom tag from img infinite image browsing db remove custom tag from img post internal server error response a status code equal to that given
+func (o *RemoveCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPostInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
+// Code gets the status code for the remove custom tag from img infinite image browsing db remove custom tag from img post internal server error response
+func (o *RemoveCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPostInternalServerError) Code() int {
+	return 500
+}
+
+func (o *RemoveCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPostInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /infinite_image_browsing/db/remove_custom_tag_from_img][%d] removeCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *RemoveCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPostInternalServerError) String() string {
+	return fmt.Sprintf("[POST /infinite_image_browsing/db/remove_custom_tag_from_img][%d] removeCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *RemoveCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPostInternalServerError) GetPayload() *models.HTTPException {
+	return o.Payload
+}
+
+func (o *RemoveCustomTagFromImgInfiniteImageBrowsingDbRemoveCustomTagFromImgPostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.HTTPException)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

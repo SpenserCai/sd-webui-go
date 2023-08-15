@@ -35,6 +35,12 @@ func (o *APIControlnetSegSamControlnetSegPostReader) ReadResponse(response runti
 			return nil, err
 		}
 		return nil, result
+	case 500:
+		result := NewAPIControlnetSegSamControlnetSegPostInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -165,6 +171,74 @@ func (o *APIControlnetSegSamControlnetSegPostUnprocessableEntity) GetPayload() *
 func (o *APIControlnetSegSamControlnetSegPostUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.HTTPValidationError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAPIControlnetSegSamControlnetSegPostInternalServerError creates a APIControlnetSegSamControlnetSegPostInternalServerError with default headers values
+func NewAPIControlnetSegSamControlnetSegPostInternalServerError() *APIControlnetSegSamControlnetSegPostInternalServerError {
+	return &APIControlnetSegSamControlnetSegPostInternalServerError{}
+}
+
+/*
+APIControlnetSegSamControlnetSegPostInternalServerError describes a response with status code 500, with default header values.
+
+HTTPException
+*/
+type APIControlnetSegSamControlnetSegPostInternalServerError struct {
+	Payload *models.HTTPException
+}
+
+// IsSuccess returns true when this api controlnet seg sam controlnet seg post internal server error response has a 2xx status code
+func (o *APIControlnetSegSamControlnetSegPostInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this api controlnet seg sam controlnet seg post internal server error response has a 3xx status code
+func (o *APIControlnetSegSamControlnetSegPostInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this api controlnet seg sam controlnet seg post internal server error response has a 4xx status code
+func (o *APIControlnetSegSamControlnetSegPostInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this api controlnet seg sam controlnet seg post internal server error response has a 5xx status code
+func (o *APIControlnetSegSamControlnetSegPostInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this api controlnet seg sam controlnet seg post internal server error response a status code equal to that given
+func (o *APIControlnetSegSamControlnetSegPostInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
+// Code gets the status code for the api controlnet seg sam controlnet seg post internal server error response
+func (o *APIControlnetSegSamControlnetSegPostInternalServerError) Code() int {
+	return 500
+}
+
+func (o *APIControlnetSegSamControlnetSegPostInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /sam/controlnet-seg][%d] apiControlnetSegSamControlnetSegPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *APIControlnetSegSamControlnetSegPostInternalServerError) String() string {
+	return fmt.Sprintf("[POST /sam/controlnet-seg][%d] apiControlnetSegSamControlnetSegPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *APIControlnetSegSamControlnetSegPostInternalServerError) GetPayload() *models.HTTPException {
+	return o.Payload
+}
+
+func (o *APIControlnetSegSamControlnetSegPostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.HTTPException)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

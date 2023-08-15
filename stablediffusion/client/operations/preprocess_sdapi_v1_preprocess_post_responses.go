@@ -35,6 +35,12 @@ func (o *PreprocessSdapiV1PreprocessPostReader) ReadResponse(response runtime.Cl
 			return nil, err
 		}
 		return nil, result
+	case 500:
+		result := NewPreprocessSdapiV1PreprocessPostInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -167,6 +173,74 @@ func (o *PreprocessSdapiV1PreprocessPostUnprocessableEntity) GetPayload() *model
 func (o *PreprocessSdapiV1PreprocessPostUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.HTTPValidationError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPreprocessSdapiV1PreprocessPostInternalServerError creates a PreprocessSdapiV1PreprocessPostInternalServerError with default headers values
+func NewPreprocessSdapiV1PreprocessPostInternalServerError() *PreprocessSdapiV1PreprocessPostInternalServerError {
+	return &PreprocessSdapiV1PreprocessPostInternalServerError{}
+}
+
+/*
+PreprocessSdapiV1PreprocessPostInternalServerError describes a response with status code 500, with default header values.
+
+HTTPException
+*/
+type PreprocessSdapiV1PreprocessPostInternalServerError struct {
+	Payload *models.HTTPException
+}
+
+// IsSuccess returns true when this preprocess sdapi v1 preprocess post internal server error response has a 2xx status code
+func (o *PreprocessSdapiV1PreprocessPostInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this preprocess sdapi v1 preprocess post internal server error response has a 3xx status code
+func (o *PreprocessSdapiV1PreprocessPostInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this preprocess sdapi v1 preprocess post internal server error response has a 4xx status code
+func (o *PreprocessSdapiV1PreprocessPostInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this preprocess sdapi v1 preprocess post internal server error response has a 5xx status code
+func (o *PreprocessSdapiV1PreprocessPostInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this preprocess sdapi v1 preprocess post internal server error response a status code equal to that given
+func (o *PreprocessSdapiV1PreprocessPostInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
+// Code gets the status code for the preprocess sdapi v1 preprocess post internal server error response
+func (o *PreprocessSdapiV1PreprocessPostInternalServerError) Code() int {
+	return 500
+}
+
+func (o *PreprocessSdapiV1PreprocessPostInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /sdapi/v1/preprocess][%d] preprocessSdapiV1PreprocessPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *PreprocessSdapiV1PreprocessPostInternalServerError) String() string {
+	return fmt.Sprintf("[POST /sdapi/v1/preprocess][%d] preprocessSdapiV1PreprocessPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *PreprocessSdapiV1PreprocessPostInternalServerError) GetPayload() *models.HTTPException {
+	return o.Payload
+}
+
+func (o *PreprocessSdapiV1PreprocessPostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.HTTPException)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -35,6 +35,12 @@ func (o *RembgRemoveRembgPostReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return nil, result
+	case 500:
+		result := NewRembgRemoveRembgPostInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -165,6 +171,74 @@ func (o *RembgRemoveRembgPostUnprocessableEntity) GetPayload() *models.HTTPValid
 func (o *RembgRemoveRembgPostUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.HTTPValidationError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewRembgRemoveRembgPostInternalServerError creates a RembgRemoveRembgPostInternalServerError with default headers values
+func NewRembgRemoveRembgPostInternalServerError() *RembgRemoveRembgPostInternalServerError {
+	return &RembgRemoveRembgPostInternalServerError{}
+}
+
+/*
+RembgRemoveRembgPostInternalServerError describes a response with status code 500, with default header values.
+
+HTTPException
+*/
+type RembgRemoveRembgPostInternalServerError struct {
+	Payload *models.HTTPException
+}
+
+// IsSuccess returns true when this rembg remove rembg post internal server error response has a 2xx status code
+func (o *RembgRemoveRembgPostInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this rembg remove rembg post internal server error response has a 3xx status code
+func (o *RembgRemoveRembgPostInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this rembg remove rembg post internal server error response has a 4xx status code
+func (o *RembgRemoveRembgPostInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this rembg remove rembg post internal server error response has a 5xx status code
+func (o *RembgRemoveRembgPostInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this rembg remove rembg post internal server error response a status code equal to that given
+func (o *RembgRemoveRembgPostInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
+// Code gets the status code for the rembg remove rembg post internal server error response
+func (o *RembgRemoveRembgPostInternalServerError) Code() int {
+	return 500
+}
+
+func (o *RembgRemoveRembgPostInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /rembg][%d] rembgRemoveRembgPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *RembgRemoveRembgPostInternalServerError) String() string {
+	return fmt.Sprintf("[POST /rembg][%d] rembgRemoveRembgPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *RembgRemoveRembgPostInternalServerError) GetPayload() *models.HTTPException {
+	return o.Payload
+}
+
+func (o *RembgRemoveRembgPostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.HTTPException)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

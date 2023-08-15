@@ -35,6 +35,12 @@ func (o *OpenFolderUsingExploreInfiniteImageBrowsingOpenFolderPostReader) ReadRe
 			return nil, err
 		}
 		return nil, result
+	case 500:
+		result := NewOpenFolderUsingExploreInfiniteImageBrowsingOpenFolderPostInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -165,6 +171,74 @@ func (o *OpenFolderUsingExploreInfiniteImageBrowsingOpenFolderPostUnprocessableE
 func (o *OpenFolderUsingExploreInfiniteImageBrowsingOpenFolderPostUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.HTTPValidationError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewOpenFolderUsingExploreInfiniteImageBrowsingOpenFolderPostInternalServerError creates a OpenFolderUsingExploreInfiniteImageBrowsingOpenFolderPostInternalServerError with default headers values
+func NewOpenFolderUsingExploreInfiniteImageBrowsingOpenFolderPostInternalServerError() *OpenFolderUsingExploreInfiniteImageBrowsingOpenFolderPostInternalServerError {
+	return &OpenFolderUsingExploreInfiniteImageBrowsingOpenFolderPostInternalServerError{}
+}
+
+/*
+OpenFolderUsingExploreInfiniteImageBrowsingOpenFolderPostInternalServerError describes a response with status code 500, with default header values.
+
+HTTPException
+*/
+type OpenFolderUsingExploreInfiniteImageBrowsingOpenFolderPostInternalServerError struct {
+	Payload *models.HTTPException
+}
+
+// IsSuccess returns true when this open folder using explore infinite image browsing open folder post internal server error response has a 2xx status code
+func (o *OpenFolderUsingExploreInfiniteImageBrowsingOpenFolderPostInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this open folder using explore infinite image browsing open folder post internal server error response has a 3xx status code
+func (o *OpenFolderUsingExploreInfiniteImageBrowsingOpenFolderPostInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this open folder using explore infinite image browsing open folder post internal server error response has a 4xx status code
+func (o *OpenFolderUsingExploreInfiniteImageBrowsingOpenFolderPostInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this open folder using explore infinite image browsing open folder post internal server error response has a 5xx status code
+func (o *OpenFolderUsingExploreInfiniteImageBrowsingOpenFolderPostInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this open folder using explore infinite image browsing open folder post internal server error response a status code equal to that given
+func (o *OpenFolderUsingExploreInfiniteImageBrowsingOpenFolderPostInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
+// Code gets the status code for the open folder using explore infinite image browsing open folder post internal server error response
+func (o *OpenFolderUsingExploreInfiniteImageBrowsingOpenFolderPostInternalServerError) Code() int {
+	return 500
+}
+
+func (o *OpenFolderUsingExploreInfiniteImageBrowsingOpenFolderPostInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /infinite_image_browsing/open_folder][%d] openFolderUsingExploreInfiniteImageBrowsingOpenFolderPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *OpenFolderUsingExploreInfiniteImageBrowsingOpenFolderPostInternalServerError) String() string {
+	return fmt.Sprintf("[POST /infinite_image_browsing/open_folder][%d] openFolderUsingExploreInfiniteImageBrowsingOpenFolderPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *OpenFolderUsingExploreInfiniteImageBrowsingOpenFolderPostInternalServerError) GetPayload() *models.HTTPException {
+	return o.Payload
+}
+
+func (o *OpenFolderUsingExploreInfiniteImageBrowsingOpenFolderPostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.HTTPException)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

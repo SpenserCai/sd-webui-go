@@ -35,6 +35,12 @@ func (o *CreateHypernetworkSdapiV1CreateHypernetworkPostReader) ReadResponse(res
 			return nil, err
 		}
 		return nil, result
+	case 500:
+		result := NewCreateHypernetworkSdapiV1CreateHypernetworkPostInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -167,6 +173,74 @@ func (o *CreateHypernetworkSdapiV1CreateHypernetworkPostUnprocessableEntity) Get
 func (o *CreateHypernetworkSdapiV1CreateHypernetworkPostUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.HTTPValidationError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewCreateHypernetworkSdapiV1CreateHypernetworkPostInternalServerError creates a CreateHypernetworkSdapiV1CreateHypernetworkPostInternalServerError with default headers values
+func NewCreateHypernetworkSdapiV1CreateHypernetworkPostInternalServerError() *CreateHypernetworkSdapiV1CreateHypernetworkPostInternalServerError {
+	return &CreateHypernetworkSdapiV1CreateHypernetworkPostInternalServerError{}
+}
+
+/*
+CreateHypernetworkSdapiV1CreateHypernetworkPostInternalServerError describes a response with status code 500, with default header values.
+
+HTTPException
+*/
+type CreateHypernetworkSdapiV1CreateHypernetworkPostInternalServerError struct {
+	Payload *models.HTTPException
+}
+
+// IsSuccess returns true when this create hypernetwork sdapi v1 create hypernetwork post internal server error response has a 2xx status code
+func (o *CreateHypernetworkSdapiV1CreateHypernetworkPostInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create hypernetwork sdapi v1 create hypernetwork post internal server error response has a 3xx status code
+func (o *CreateHypernetworkSdapiV1CreateHypernetworkPostInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create hypernetwork sdapi v1 create hypernetwork post internal server error response has a 4xx status code
+func (o *CreateHypernetworkSdapiV1CreateHypernetworkPostInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create hypernetwork sdapi v1 create hypernetwork post internal server error response has a 5xx status code
+func (o *CreateHypernetworkSdapiV1CreateHypernetworkPostInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this create hypernetwork sdapi v1 create hypernetwork post internal server error response a status code equal to that given
+func (o *CreateHypernetworkSdapiV1CreateHypernetworkPostInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
+// Code gets the status code for the create hypernetwork sdapi v1 create hypernetwork post internal server error response
+func (o *CreateHypernetworkSdapiV1CreateHypernetworkPostInternalServerError) Code() int {
+	return 500
+}
+
+func (o *CreateHypernetworkSdapiV1CreateHypernetworkPostInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /sdapi/v1/create/hypernetwork][%d] createHypernetworkSdapiV1CreateHypernetworkPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *CreateHypernetworkSdapiV1CreateHypernetworkPostInternalServerError) String() string {
+	return fmt.Sprintf("[POST /sdapi/v1/create/hypernetwork][%d] createHypernetworkSdapiV1CreateHypernetworkPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *CreateHypernetworkSdapiV1CreateHypernetworkPostInternalServerError) GetPayload() *models.HTTPException {
+	return o.Payload
+}
+
+func (o *CreateHypernetworkSdapiV1CreateHypernetworkPostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.HTTPException)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

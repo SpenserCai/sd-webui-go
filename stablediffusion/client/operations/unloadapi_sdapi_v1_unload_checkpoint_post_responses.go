@@ -11,6 +11,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/SpenserCai/sd-webui-go/stablediffusion/models"
 )
 
 // UnloadapiSdapiV1UnloadCheckpointPostReader is a Reader for the UnloadapiSdapiV1UnloadCheckpointPost structure.
@@ -27,6 +29,12 @@ func (o *UnloadapiSdapiV1UnloadCheckpointPostReader) ReadResponse(response runti
 			return nil, err
 		}
 		return result, nil
+	case 500:
+		result := NewUnloadapiSdapiV1UnloadCheckpointPostInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -92,6 +100,74 @@ func (o *UnloadapiSdapiV1UnloadCheckpointPostOK) readResponse(response runtime.C
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewUnloadapiSdapiV1UnloadCheckpointPostInternalServerError creates a UnloadapiSdapiV1UnloadCheckpointPostInternalServerError with default headers values
+func NewUnloadapiSdapiV1UnloadCheckpointPostInternalServerError() *UnloadapiSdapiV1UnloadCheckpointPostInternalServerError {
+	return &UnloadapiSdapiV1UnloadCheckpointPostInternalServerError{}
+}
+
+/*
+UnloadapiSdapiV1UnloadCheckpointPostInternalServerError describes a response with status code 500, with default header values.
+
+HTTPException
+*/
+type UnloadapiSdapiV1UnloadCheckpointPostInternalServerError struct {
+	Payload *models.HTTPException
+}
+
+// IsSuccess returns true when this unloadapi sdapi v1 unload checkpoint post internal server error response has a 2xx status code
+func (o *UnloadapiSdapiV1UnloadCheckpointPostInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this unloadapi sdapi v1 unload checkpoint post internal server error response has a 3xx status code
+func (o *UnloadapiSdapiV1UnloadCheckpointPostInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this unloadapi sdapi v1 unload checkpoint post internal server error response has a 4xx status code
+func (o *UnloadapiSdapiV1UnloadCheckpointPostInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this unloadapi sdapi v1 unload checkpoint post internal server error response has a 5xx status code
+func (o *UnloadapiSdapiV1UnloadCheckpointPostInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this unloadapi sdapi v1 unload checkpoint post internal server error response a status code equal to that given
+func (o *UnloadapiSdapiV1UnloadCheckpointPostInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
+// Code gets the status code for the unloadapi sdapi v1 unload checkpoint post internal server error response
+func (o *UnloadapiSdapiV1UnloadCheckpointPostInternalServerError) Code() int {
+	return 500
+}
+
+func (o *UnloadapiSdapiV1UnloadCheckpointPostInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /sdapi/v1/unload-checkpoint][%d] unloadapiSdapiV1UnloadCheckpointPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *UnloadapiSdapiV1UnloadCheckpointPostInternalServerError) String() string {
+	return fmt.Sprintf("[POST /sdapi/v1/unload-checkpoint][%d] unloadapiSdapiV1UnloadCheckpointPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *UnloadapiSdapiV1UnloadCheckpointPostInternalServerError) GetPayload() *models.HTTPException {
+	return o.Payload
+}
+
+func (o *UnloadapiSdapiV1UnloadCheckpointPostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.HTTPException)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

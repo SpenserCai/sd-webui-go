@@ -11,6 +11,8 @@ import (
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/SpenserCai/sd-webui-go/stablediffusion/models"
 )
 
 // RefreshCheckpointsSdapiV1RefreshCheckpointsPostReader is a Reader for the RefreshCheckpointsSdapiV1RefreshCheckpointsPost structure.
@@ -27,6 +29,12 @@ func (o *RefreshCheckpointsSdapiV1RefreshCheckpointsPostReader) ReadResponse(res
 			return nil, err
 		}
 		return result, nil
+	case 500:
+		result := NewRefreshCheckpointsSdapiV1RefreshCheckpointsPostInternalServerError()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -92,6 +100,74 @@ func (o *RefreshCheckpointsSdapiV1RefreshCheckpointsPostOK) readResponse(respons
 
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewRefreshCheckpointsSdapiV1RefreshCheckpointsPostInternalServerError creates a RefreshCheckpointsSdapiV1RefreshCheckpointsPostInternalServerError with default headers values
+func NewRefreshCheckpointsSdapiV1RefreshCheckpointsPostInternalServerError() *RefreshCheckpointsSdapiV1RefreshCheckpointsPostInternalServerError {
+	return &RefreshCheckpointsSdapiV1RefreshCheckpointsPostInternalServerError{}
+}
+
+/*
+RefreshCheckpointsSdapiV1RefreshCheckpointsPostInternalServerError describes a response with status code 500, with default header values.
+
+HTTPException
+*/
+type RefreshCheckpointsSdapiV1RefreshCheckpointsPostInternalServerError struct {
+	Payload *models.HTTPException
+}
+
+// IsSuccess returns true when this refresh checkpoints sdapi v1 refresh checkpoints post internal server error response has a 2xx status code
+func (o *RefreshCheckpointsSdapiV1RefreshCheckpointsPostInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this refresh checkpoints sdapi v1 refresh checkpoints post internal server error response has a 3xx status code
+func (o *RefreshCheckpointsSdapiV1RefreshCheckpointsPostInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this refresh checkpoints sdapi v1 refresh checkpoints post internal server error response has a 4xx status code
+func (o *RefreshCheckpointsSdapiV1RefreshCheckpointsPostInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this refresh checkpoints sdapi v1 refresh checkpoints post internal server error response has a 5xx status code
+func (o *RefreshCheckpointsSdapiV1RefreshCheckpointsPostInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this refresh checkpoints sdapi v1 refresh checkpoints post internal server error response a status code equal to that given
+func (o *RefreshCheckpointsSdapiV1RefreshCheckpointsPostInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
+// Code gets the status code for the refresh checkpoints sdapi v1 refresh checkpoints post internal server error response
+func (o *RefreshCheckpointsSdapiV1RefreshCheckpointsPostInternalServerError) Code() int {
+	return 500
+}
+
+func (o *RefreshCheckpointsSdapiV1RefreshCheckpointsPostInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /sdapi/v1/refresh-checkpoints][%d] refreshCheckpointsSdapiV1RefreshCheckpointsPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *RefreshCheckpointsSdapiV1RefreshCheckpointsPostInternalServerError) String() string {
+	return fmt.Sprintf("[POST /sdapi/v1/refresh-checkpoints][%d] refreshCheckpointsSdapiV1RefreshCheckpointsPostInternalServerError  %+v", 500, o.Payload)
+}
+
+func (o *RefreshCheckpointsSdapiV1RefreshCheckpointsPostInternalServerError) GetPayload() *models.HTTPException {
+	return o.Payload
+}
+
+func (o *RefreshCheckpointsSdapiV1RefreshCheckpointsPostInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.HTTPException)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
