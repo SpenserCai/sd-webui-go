@@ -3,7 +3,7 @@
  * @Date: 2023-08-14 17:36:46
  * @version:
  * @LastEditors: SpenserCai
- * @LastEditTime: 2023-08-20 04:11:40
+ * @LastEditTime: 2023-08-20 15:24:52
  * @Description: file content
  */
 package intersvc
@@ -22,6 +22,7 @@ type ControlnetModuleDetailItem struct {
 	Sliders   []ControlnetModuleDetailSlidersItem `json:"sliders"`
 }
 
+// Checked: True
 type ControlnetModuleListResponse struct {
 	ModuleList   []string    `json:"module_list"`
 	ModuleDetail interface{} `json:"module_detail"`
