@@ -3,7 +3,7 @@
  * @Date: 2023-08-14 01:00:25
  * @version:
  * @LastEditors: SpenserCai
- * @LastEditTime: 2023-08-20 04:17:09
+ * @LastEditTime: 2023-08-20 15:24:24
  * @Description: file content
  */
 package intersvc
@@ -14,6 +14,7 @@ import (
 
 type ControlnetDetectRequest = SdApiModel.BodyDetectControlnetDetectPost
 
+// Checked: True
 type ControlnetDetectResponse struct {
 	Images []string `json:"images"`
 	Info   string   `json:"info"`
