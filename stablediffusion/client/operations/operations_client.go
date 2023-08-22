@@ -222,6 +222,10 @@ type ClientService interface {
 
 	RobotsTxtRobotsTxtGet(params *RobotsTxtRobotsTxtGetParams, opts ...ClientOption) (*RobotsTxtRobotsTxtGetOK, error)
 
+	RoopImageRoopImagePost(params *RoopImageRoopImagePostParams, opts ...ClientOption) (*RoopImageRoopImagePostOK, error)
+
+	RoopModelsRoopModelsGet(params *RoopModelsRoopModelsGetParams, opts ...ClientOption) (*RoopModelsRoopModelsGetOK, error)
+
 	SearchBySubstrInfiniteImageBrowsingDbSearchBySubstrGet(params *SearchBySubstrInfiniteImageBrowsingDbSearchBySubstrGetParams, opts ...ClientOption) (*SearchBySubstrInfiniteImageBrowsingDbSearchBySubstrGetOK, error)
 
 	SetConfigSdapiV1OptionsPost(params *SetConfigSdapiV1OptionsPostParams, opts ...ClientOption) (*SetConfigSdapiV1OptionsPostOK, error)
@@ -3910,6 +3914,82 @@ func (a *Client) RobotsTxtRobotsTxtGet(params *RobotsTxtRobotsTxtGetParams, opts
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for robots_txt_robots_txt_get: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+RoopImageRoopImagePost roops image
+*/
+func (a *Client) RoopImageRoopImagePost(params *RoopImageRoopImagePostParams, opts ...ClientOption) (*RoopImageRoopImagePostOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRoopImageRoopImagePostParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "roop_image_roop_image_post",
+		Method:             "POST",
+		PathPattern:        "/roop/image",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &RoopImageRoopImagePostReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RoopImageRoopImagePostOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for roop_image_roop_image_post: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+RoopModelsRoopModelsGet roops models
+*/
+func (a *Client) RoopModelsRoopModelsGet(params *RoopModelsRoopModelsGetParams, opts ...ClientOption) (*RoopModelsRoopModelsGetOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRoopModelsRoopModelsGetParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "roop_models_roop_models_get",
+		Method:             "GET",
+		PathPattern:        "/roop/models",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &RoopModelsRoopModelsGetReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RoopModelsRoopModelsGetOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for roop_models_roop_models_get: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
