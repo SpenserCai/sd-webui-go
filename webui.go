@@ -3,7 +3,7 @@
  * @Date: 2023-08-11 13:15:25
  * @version:
  * @LastEditors: SpenserCai
- * @LastEditTime: 2023-08-26 12:35:45
+ * @LastEditTime: 2023-09-01 13:15:08
  * @Description: file content
  */
 package webui
@@ -23,7 +23,7 @@ type StableDiffInterface struct {
 }
 
 func NewStableDiffInterface(host string) *StableDiffInterface {
-	rclient.DefaultTimeout = 120 * time.Second
+	rclient.DefaultTimeout = 600 * time.Second
 	var client *StableDiffClient.StableDiffusion
 	if host == "" {
 		client = StableDiffClient.NewHTTPClient(strfmt.Default)
