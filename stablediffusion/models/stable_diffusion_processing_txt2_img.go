@@ -26,8 +26,14 @@ type StableDiffusionProcessingTxt2Img struct {
 	// Cfg Scale
 	CfgScale *float64 `json:"cfg_scale,omitempty"`
 
+	// Comments
+	Comments interface{} `json:"comments,omitempty"`
+
 	// Denoising Strength
 	DenoisingStrength float64 `json:"denoising_strength,omitempty"`
+
+	// Disable Extra Networks
+	DisableExtraNetworks *bool `json:"disable_extra_networks,omitempty"`
 
 	// Do Not Save Grid
 	DoNotSaveGrid *bool `json:"do_not_save_grid,omitempty"`
@@ -49,6 +55,9 @@ type StableDiffusionProcessingTxt2Img struct {
 
 	// Height
 	Height *int64 `json:"height,omitempty"`
+
+	// Hr Checkpoint Name
+	HrCheckpointName string `json:"hr_checkpoint_name,omitempty"`
 
 	// Hr Negative Prompt
 	HrNegativePrompt string `json:"hr_negative_prompt,omitempty"`
@@ -89,8 +98,14 @@ type StableDiffusionProcessingTxt2Img struct {
 	// Prompt
 	Prompt string `json:"prompt,omitempty"`
 
+	// Refiner Checkpoint
+	RefinerCheckpoint string `json:"refiner_checkpoint,omitempty"`
+
+	// Refiner Switch At
+	RefinerSwitchAt float64 `json:"refiner_switch_at,omitempty"`
+
 	// Restore Faces
-	RestoreFaces *bool `json:"restore_faces,omitempty"`
+	RestoreFaces bool `json:"restore_faces,omitempty"`
 
 	// S Churn
 	SChurn float64 `json:"s_churn,omitempty"`
@@ -99,7 +114,7 @@ type StableDiffusionProcessingTxt2Img struct {
 	SMinUncond float64 `json:"s_min_uncond,omitempty"`
 
 	// S Noise
-	SNoise *float64 `json:"s_noise,omitempty"`
+	SNoise float64 `json:"s_noise,omitempty"`
 
 	// S Tmax
 	STmax float64 `json:"s_tmax,omitempty"`
@@ -147,7 +162,7 @@ type StableDiffusionProcessingTxt2Img struct {
 	SubseedStrength float64 `json:"subseed_strength,omitempty"`
 
 	// Tiling
-	Tiling *bool `json:"tiling,omitempty"`
+	Tiling bool `json:"tiling,omitempty"`
 
 	// Width
 	Width *int64 `json:"width,omitempty"`
