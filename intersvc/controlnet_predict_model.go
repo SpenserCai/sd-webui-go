@@ -3,7 +3,7 @@
  * @Date: 2023-08-22 15:52:43
  * @version:
  * @LastEditors: SpenserCai
- * @LastEditTime: 2023-08-23 13:00:37
+ * @LastEditTime: 2023-09-06 23:56:38
  * @Description: file content
  */
 package intersvc
@@ -16,7 +16,7 @@ type ControlnetPredictArgsItem struct {
 	Image         string  `json:"image"`
 	ResizeMode    int64   `json:"resize_mode"`
 	LowVRAM       bool    `json:"low_vram"`
-	ProcessorRes  float64 `json:"processor_res"`
+	ProcessorRes  int64   `json:"processor_res"`
 	ThresholdA    float64 `json:"threshold_a"`
 	ThresholdB    float64 `json:"threshold_b"`
 	GuidanceStart float64 `json:"guidance_start"`
