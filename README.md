@@ -3,7 +3,7 @@
  * @Date: 2023-08-12 01:27:12
  * @version: 
  * @LastEditors: SpenserCai
- * @LastEditTime: 2023-08-14 04:21:34
+ * @LastEditTime: 2023-09-13 10:51:18
  * @Description: file content
 -->
 
@@ -14,9 +14,9 @@
 # SD-WEBUI-GO
 Golang SDK for [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui)'s API
 
-<!--Among the contributors is AUTOMATIC1111, a little joke on my part.😂-->
+**Among the contributors is AUTOMATIC1111, a little joke on my part😂.**
 
-<!--Here,sincerely thank AUTOMATIC1111 for its great contribution to AIGC-->
+**Here,sincerely thank AUTOMATIC1111 for its great contribution to AIGC**
 
 </div>
 
