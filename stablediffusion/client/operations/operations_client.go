@@ -228,6 +228,8 @@ type ClientService interface {
 
 	RoopModelsRoopModelsGet(params *RoopModelsRoopModelsGetParams, opts ...ClientOption) (*RoopModelsRoopModelsGetOK, error)
 
+	SamAreaToolsSamAreaPost(params *SamAreaToolsSamAreaPostParams, opts ...ClientOption) (*SamAreaToolsSamAreaPostOK, error)
+
 	SearchBySubstrInfiniteImageBrowsingDbSearchBySubstrGet(params *SearchBySubstrInfiniteImageBrowsingDbSearchBySubstrGetParams, opts ...ClientOption) (*SearchBySubstrInfiniteImageBrowsingDbSearchBySubstrGetOK, error)
 
 	SetConfigSdapiV1OptionsPost(params *SetConfigSdapiV1OptionsPostParams, opts ...ClientOption) (*SetConfigSdapiV1OptionsPostOK, error)
@@ -4030,6 +4032,44 @@ func (a *Client) RoopModelsRoopModelsGet(params *RoopModelsRoopModelsGetParams, 
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for roop_models_roop_models_get: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+SamAreaToolsSamAreaPost sams area
+*/
+func (a *Client) SamAreaToolsSamAreaPost(params *SamAreaToolsSamAreaPostParams, opts ...ClientOption) (*SamAreaToolsSamAreaPostOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSamAreaToolsSamAreaPostParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "sam_area_tools_sam_area_post",
+		Method:             "POST",
+		PathPattern:        "/tools/sam_area",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &SamAreaToolsSamAreaPostReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SamAreaToolsSamAreaPostOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for sam_area_tools_sam_area_post: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
