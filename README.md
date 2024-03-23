@@ -2,7 +2,7 @@
  * @Author: SpenserCai
  * @Date: 2023-08-12 01:27:12
  * @version: 
- * @LastEditors: SpenserCai
+ * @LastEditors: SpenserCai, drgrib
  * @LastEditTime: 2023-09-13 10:51:18
  * @Description: file content
 -->
@@ -53,8 +53,51 @@ Almost all interfaces are supported by the second method, while the first one is
 
 In fact, most of the interfaces can be used with 'intersvc', but it requires defining the Response. The API documentation of 'sd-webui' does not provide the content of the Response, so it needs to be defined manually. You can refer to the "Participating" section below for specific instructions.
 
+### go-swagger text2img
 
-### intersvc
+```go
+package main
+
+import (
+	"encoding/base64"
+	"fmt"
+
+	SdClient "github.com/SpenserCai/sd-webui-go"
+	SdApiOperation "github.com/SpenserCai/sd-webui-go/stablediffusion/client/operations"
+	SdApiModel "github.com/SpenserCai/sd-webui-go/stablediffusion/models"
+)
+
+func MustBeNil(err error) {
+	if err != nil {
+		panic(err)
+	}
+}
+
+var URL = "127.0.0.1:7860"
+
+func main() {
+	sdClient := SdClient.NewStableDiffInterface(URL)
+
+	rd := SdApiOperation.NewText2imgapiSdapiV1Txt2imgPostParams()
+	rd.Body = &SdApiModel.StableDiffusionProcessingTxt2Img{
+		Prompt:         "dog",
+		NegativePrompt: "ugly",
+		ScriptArgs:     []interface{}{},
+	}
+
+	resp, err := sdClient.Client.Operations.Text2imgapiSdapiV1Txt2imgPost(rd)
+	MustBeNil(err)
+
+	for i, s := range resp.Payload.Images {
+		b, err := base64.StdEncoding.DecodeString(s)
+		MustBeNil(err)
+		err = os.WriteFile(fmt.Sprintf("%d.png", i), b, 0644)
+		MustBeNil(err)
+	}
+}
+```
+
+### intersvc deoldify
 
 ```go
 import (
@@ -90,7 +133,7 @@ func main() {
 
 Full example code: [intersvc_example](./examples/intersvc_demo/main.go)
 
-### go-swagger
+### go-swagger deoldify 
 
 ```go
 import (
